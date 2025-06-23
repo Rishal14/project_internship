@@ -57,13 +57,13 @@ export function HeroSection() {
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               
-              <Button 
+              {/* <Button 
                 variant="outline" 
                 size="lg"
                 className="border-2 border-white/40 text-white hover:bg-white/20 backdrop-blur-sm px-8 py-4 rounded-full font-semibold transition-all duration-300 hover:scale-105 text-lg"
               >
                 Our Services
-              </Button>
+              </Button> */}
             </motion.div>
           </motion.div>
 
