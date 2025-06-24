@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, useInView, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { TYPOGRAPHY } from '@/lib/typography';
 import { ArrowRight, Users, MapPin, Trophy, Target, Drill, ChevronRight, Award, Globe, Zap, Play, Info } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Inter, Poppins } from 'next/font/google';
@@ -13,6 +14,13 @@ const headingFont = Poppins({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-heading',
+});
+
+const displayFont = Poppins({
+  weight: '700', // Bold
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-display',
 });
 
 const bodyFont = Inter({
@@ -49,6 +57,21 @@ export function AboutSection() {
   
   useEffect(() => {
     setIsMounted(true);
+    setIsPlaying(true); // Set playing state to true on mount
+
+    // Auto-play video when component mounts
+    if (videoRef.current) {
+      videoRef.current.play()
+        .catch(error => {
+          console.log('Video autoplay was prevented:', error);
+          // Many browsers prevent autoplay with sound
+          // We already have muted set, but this is a fallback
+          if (videoRef.current) {
+            videoRef.current.muted = true;
+            videoRef.current.play();
+          }
+        });
+    }
 
     if (typeof window !== "undefined") {
       setDimensions({ width: window.innerWidth, height: window.innerHeight });
@@ -76,7 +99,6 @@ export function AboutSection() {
         <video
           autoPlay
           loop
-          muted
           playsInline
           className="absolute inset-0 w-full h-full object-cover scale-105"
         >
@@ -188,13 +210,13 @@ export function AboutSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.9 }}
-              className="inline-block px-4 py-2 rounded-full bg-orange-500/20 text-orange-300 text-sm font-medium mb-6 border border-orange-500/20"
+              className={`${TYPOGRAPHY.caption} inline-block px-4 py-2 rounded-full bg-orange-500/20 text-orange-300 mb-6 border border-orange-500/20 tracking-wider uppercase`}
             >
-              WHO WE ARE
+              Who We Are
             </motion.span>
             
             <motion.h2 
-              className={`${headingFont.className} text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight`}
+              className={`${TYPOGRAPHY.heading1} text-white mb-6 leading-tight`}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.9 }}
@@ -208,7 +230,7 @@ export function AboutSection() {
                 Leading the Future of 
               </motion.span>
               <motion.span
-                className="block text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-orange-300 to-orange-500"
+                className={`${displayFont.className} block text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-orange-300 to-orange-500 tracking-tight`}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 1.3 }}
@@ -248,8 +270,9 @@ export function AboutSection() {
                     poster="https://images.unsplash.com/photo-1605152276897-4f618f831968?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80"
                     muted
                     loop
+                    autoPlay
                   >
-                    <source src="/videos/company-video.mp4" type="video/mp4" />
+                    <source src="https://gtotexas.com/wp-content/uploads/2025/01/GTO_FRACKING_full_video_1.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
                   
@@ -334,8 +357,8 @@ export function AboutSection() {
                   transition={{ type: "spring", stiffness: 400, damping: 15 }}
                 >
                   <stat.icon className="w-8 h-8 text-orange-400 mx-auto mb-2 group-hover:scale-110 transition-transform duration-300" />
-                  <div className="text-2xl font-bold text-white group-hover:text-orange-300 transition-colors duration-300">{stat.value}</div>
-                  <div className="text-xs font-medium text-gray-300 uppercase tracking-wider mt-1">{stat.label}</div>
+                  <div className={`${headingFont.className} text-2xl font-bold text-white group-hover:text-orange-300 transition-colors duration-300`}>{stat.value}</div>
+                  <div className={`${TYPOGRAPHY.caption} text-gray-300 uppercase tracking-wider mt-1`}>{stat.label}</div>
                 </motion.div>
               ))}
             </motion.div>
@@ -351,35 +374,29 @@ export function AboutSection() {
                 className="relative"
               >
                 <div className="absolute -left-8 top-0 h-full w-1 bg-gradient-to-b from-orange-500 to-red-600 rounded-full" />
-                <h3 className={`${headingFont.className} text-3xl md:text-4xl font-bold text-white mb-6`}>
-                  Pioneering Excellence in <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-orange-300 to-orange-500">Energy Solutions</span>
+                <h3 className={`${TYPOGRAPHY.heading2} text-white mb-6`}>
+                  Pioneering Excellence in <span className={`${displayFont.className} text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-orange-300 to-orange-500`}>Energy Solutions</span>
                 </h3>
               </motion.div>
               
               <motion.p 
-                className={`${bodyFont.className} text-lg text-gray-300 leading-relaxed`}
+                className={`${TYPOGRAPHY.body} text-gray-300`}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.7 }}
                 viewport={{ once: true, margin: "-50px" }}
               >
-                At <span className="font-semibold text-orange-400">Gulf Technical Operations LLC</span>, we stand at the 
-                forefront of the oil and gas industry, delivering unparalleled equipment and services with an unwavering 
-                commitment to quality, innovation, and operational excellence. Since our establishment in 2016, we've been 
-                the trusted partner of choice for leading drilling and service companies worldwide.
+                We, <span className={`${TYPOGRAPHY.bodyBold} text-orange-400`}>Gulf Technical Operations LLC</span>, are a leading supplier of equipment and services to the oil and gas industry worldwide, driven by our philosophy of assured quality, quantity at a reasonable price. Established in Texas in 2016, we specialize in supplying products and services to drilling and service companies, ensuring they have access to the highest quality tools and equipment needed for seamless operations.
               </motion.p>
               
               <motion.p 
-                className={`${bodyFont.className} text-lg text-gray-300 leading-relaxed`}
+                className={`${TYPOGRAPHY.body} text-gray-300 mt-4`}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.9 }}
                 viewport={{ once: true, margin: "-50px" }}
               >
-                Our philosophy is simple: provide <span className="font-semibold text-orange-300">assured quality</span> and 
-                <span className="font-semibold text-orange-300"> exceptional value</span> in every solution we deliver. 
-                With a global footprint spanning the Middle East, North Africa, and Southeast Asia, we combine 
-                four decades of industry expertise with cutting-edge technology to drive operational success for our clients.
+                Our company is led by seasoned professionals with <span className={`${TYPOGRAPHY.bodyBold} text-orange-300`}>over 40 years</span> of invaluable experience in the oil and gas sector. Jerry Paul, a key leader in our team, has been instrumental in leading major projects, including the rigging, refurbishment, and commissioning of over 60 land and offshore rigs across the Middle East, Egypt, U.A.E, Oman, Yemen, Saudi Arabia, Pakistan, Iraq, and Kuwait. Drawing upon this wealth of expertise, we pride ourselves on being a reliable and trustworthy partner to the industry.
               </motion.p>
 
               <motion.div 
@@ -425,8 +442,8 @@ export function AboutSection() {
                       <div className={`w-12 h-12 ${feature.bg} rounded-xl flex items-center justify-center mb-4`}>
                         {feature.icon}
                       </div>
-                      <h4 className="text-xl font-bold text-slate-900 mb-2">{feature.title}</h4>
-                      <p className="text-slate-600">{feature.description}</p>
+                      <h4 className={`${TYPOGRAPHY.heading3} text-xl text-slate-900 mb-2`}>{feature.title}</h4>
+                      <p className={`${TYPOGRAPHY.body} text-sm text-slate-600`}>{feature.description}</p>
                     </motion.div>
                   ))}
                 </div>
