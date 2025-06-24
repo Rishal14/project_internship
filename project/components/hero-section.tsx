@@ -103,7 +103,18 @@ export function HeroSection() {
         </div>
       )}
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 lg:py-40">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
+        <div className="flex items-center space-x-4 mb-8">
+          {/* <div className="relative">
+            <div className="w-20 h-20 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center transform rotate-45 animate-pulse-glow">
+              <Drill className="w-8 h-8 text-white transform -rotate-45" />
+            </div>
+          </div> */}
+          {/* <div className="text-white">
+            <div className="text-2xl font-bold tracking-wider">GTO</div>
+            <div className="text-base text-orange-400 font-medium">GULF TECHNICAL OPERATIONS</div>
+          </div> */}
+        </div>
         <div className="max-w-4xl">
           {/* Main Heading */}
           <motion.h1
@@ -167,7 +178,7 @@ export function HeroSection() {
           </motion.div>
 
           {/* Stats Section */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.5 }}
@@ -195,7 +206,7 @@ export function HeroSection() {
                 </div>
               </motion.div>
             ))}
-          </motion.div>
+          </motion.div> */}
         </div>
       </div>
 

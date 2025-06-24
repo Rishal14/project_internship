@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Star, ChevronRight, ChevronLeft, Sparkles, Shield, Zap, Award, Search, Filter, SlidersHorizontal, Tag, ArrowRight, SearchX, Info, Check, Layers, Tool } from 'lucide-react';
+import { Star, ChevronRight, ChevronLeft, Sparkles, Shield, Zap, Award, Search, Filter, SlidersHorizontal, Tag, ArrowRight, SearchX, Info, Check, Layers } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -83,42 +83,57 @@ const ProductCard = ({ product, index }: ProductCardProps) => {
   
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: 50, scale: 0.9 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      whileHover={{ y: -10, transition: { duration: 0.2 } }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 h-full flex flex-col"
+      transition={{ 
+        duration: 0.5, 
+        delay: index * 0.1,
+        type: "spring",
+        stiffness: 100
+      }}
+      className="bg-white rounded-xl shadow-lg overflow-hidden group h-full flex flex-col border border-transparent hover:border-orange-500/50"
     >
-      <div className="relative h-48 bg-gray-100">
-        <img
+      <div className="relative h-48 bg-gray-100 overflow-hidden">
+        <motion.img
           src={imageUrl}
           alt={product.name}
           className="w-full h-full object-cover"
+          whileHover={{ scale: 1.05 }}
+          transition={{ duration: 0.3 }}
           onError={(e) => {
             (e.target as HTMLImageElement).src = '/images/placeholder-product.jpg';
           }}
         />
-        <div className="absolute top-2 right-2 bg-white/90 rounded-full px-2 py-1 text-xs font-medium flex items-center">
+        <div className="absolute top-2 right-2 bg-white/90 rounded-full px-2 py-1 text-xs font-medium flex items-center shadow">
           <Star className="w-3 h-3 text-yellow-500 mr-1" />
           {product.rating}
         </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </div>
       
       <div className="p-4 flex-1 flex flex-col">
         <h3 className="text-lg font-semibold text-gray-900 mb-2">{product.name}</h3>
         <p className="text-gray-600 text-sm mb-3 line-clamp-2">{product.description}</p>
         
-        <div className="mt-auto">
+        <div className="mt-auto pt-4 border-t border-gray-100">
           <div className="flex justify-between items-center mb-3">
             <span className="text-lg font-bold text-gray-900">
               ${product.price.toLocaleString()}
             </span>
-            <span className="text-sm text-gray-500">{product.category}</span>
+            <Badge variant="secondary">{product.category}</Badge>
           </div>
           
-          <Button className="w-full bg-blue-600 hover:bg-blue-700">
-            View Details
-          </Button>
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            className="opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          >
+            <Button className="w-full bg-gradient-to-r from-orange-500 to-red-500 text-white hover:from-orange-600 hover:to-red-600">
+              View Details <ArrowRight className="w-4 h-4 ml-2" />
+            </Button>
+          </motion.div>
         </div>
       </div>
     </motion.div>
@@ -130,18 +145,33 @@ export function ProductsSection() {
     <section id="products" className="py-20 bg-slate-50">
       <div className="container mx-auto px-4">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Products</h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            High-quality oil and gas equipment for all your industrial needs
-          </p>
+          <motion.h2 
+            className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 tracking-tight"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            Our Premier Products
+          </motion.h2>
+          <motion.p 
+            className="text-lg text-gray-600 max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            viewport={{ once: true }}
+          >
+            Explore our curated selection of high-quality equipment, engineered for performance and reliability in the most demanding environments.
+          </motion.p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {products.map((product, index) => (
             <ProductCard 
               key={product.id} 

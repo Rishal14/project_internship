@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Search } from 'lucide-react';
+import { Menu, X, Search, Drill } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { HoverCard, HoverCardTrigger, HoverCardContent } from '@/components/ui/hover-card';
 import { CommandDialog, CommandInput, CommandList, CommandGroup, CommandItem } from '@/components/ui/command';
@@ -113,74 +113,57 @@ export function Navigation() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-start h-20 space-x-8">
           {/* Logo */}
-          <div className="flex-shrink-0 flex items-center">
-            <a 
-              href="#home" 
-              className="flex items-center"
-              onClick={(e) => scrollToSection(e, '#home')}
-            >
-              <svg
-                className="h-8 w-8 text-orange-400"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-              </svg>
-              <span className="ml-2 text-xl font-bold text-white">Gulf Technical</span>
-            </a>
-          </div>
+          <motion.div 
+            className="flex items-center space-x-3"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
+            <div className="relative">
+              <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center transform rotate-45 animate-pulse-glow">
+                <Drill className="w-6 h-6 text-white transform -rotate-45" />
+              </div>
+            </div>
+            <div className="text-white">
+              <div className="text-lg font-bold tracking-wider">GTO</div>
+              <div className="text-xs text-orange-400 font-medium">GULF TECHNICAL OPERATIONS</div>
+            </div>
+          </motion.div>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-1">
             {navItems.map((item) => (
-              <HoverCard key={item.name} openDelay={0} closeDelay={0}>
+              <HoverCard key={item.name} openDelay={50} closeDelay={50}>
                 <HoverCardTrigger asChild>
                   <a
                     href={item.href}
-                    className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                      activeSection === item.href.substring(1)
-                        ? 'text-orange-400 bg-slate-800/50'
-                        : 'text-white hover:text-orange-400 hover:bg-slate-800/30'
-                    }`}
                     onClick={(e) => scrollToSection(e, item.href)}
+                    className={`relative px-3 py-2 text-sm font-medium tracking-wide transition-colors duration-300 rounded-md ${
+                      activeSection === item.href.substring(1) ? 'text-orange-400' : 'text-white hover:text-orange-400'
+                    }`}
                   >
                     {item.name}
+                    {activeSection === item.href.substring(1) && (
+                      <motion.div
+                        className="absolute inset-x-1 -bottom-1 h-0.5 bg-gradient-to-r from-orange-400 to-orange-600"
+                        layoutId="active-nav-link"
+                      />
+                    )}
                   </a>
                 </HoverCardTrigger>
-                <HoverCardContent className="w-64 p-3 bg-slate-800 border-slate-700">
-                  <div className="space-y-1">
-                    <h4 className="text-sm font-semibold text-orange-400">{item.name}</h4>
-                    <p className="text-xs text-gray-300">{item.description}</p>
+                <HoverCardContent className="w-64 bg-slate-800/80 backdrop-blur-md border-slate-700 text-white shadow-lg">
+                  <div className="p-2">
+                    <h4 className="font-bold text-orange-400 mb-1">{item.name}</h4>
+                    <p className="text-sm text-slate-300">{item.description}</p>
                   </div>
                 </HoverCardContent>
               </HoverCard>
             ))}
           </div>
 
-          {/* Desktop Search Button */}
-          <div className="hidden lg:flex items-center">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setSearchOpen(true)}
-              className="text-white hover:text-orange-400"
-            >
-              <Search className="h-4 w-4 mr-2" />
-              <span>Search</span>
-              <kbd className="ml-2 pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-slate-900 px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
-                <span className="text-xs">⌘</span>K
-              </kbd>
-            </Button>
-          </div>
-
           {/* Mobile menu button */}
-          <div className="flex lg:hidden items-center">
+          <div className="lg:hidden ml-auto">
             <Button
               variant="ghost"
               size="icon"
