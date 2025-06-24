@@ -3,15 +3,42 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Award, Globe, Zap, Drill } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 import { FloatingParticles } from '@/components/ui/floating-particles';
+import { cn } from '@/lib/utils';
+
+const heroSlides = [
+  {
+    title: 'Gulf Technical Operations',
+    description: 'Your Premier Partner in Oilfield Solutions',
+    badge: 'Industry Leader',
+    image: '/images/hero-1.jpg'
+  },
+  {
+    title: 'Innovative Solutions',
+    description: 'Cutting-edge Technology for Complex Challenges',
+    badge: 'Advanced Tech',
+    image: '/images/hero-2.jpg'
+  },
+  {
+    title: 'Global Expertise',
+    description: 'Worldwide Experience, Local Understanding',
+    badge: 'Global Reach',
+    image: '/images/hero-3.jpg'
+  }
+];
 
 export function HeroSection() {
   return (
-    <section id="home" className="relative min-h-screen hero-bg flex items-center">
-      <FloatingParticles />
-      
-      {/* Enhanced overlay for better text readability */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-orange-900/40" />
+    <section id="home" className="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-slate-900 to-slate-800 overflow-hidden">
+      <FloatingParticles
+        className="absolute inset-0"
+        quantity={50}
+        color="#f97316"
+        size={2}
+      />
       
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">

@@ -4,10 +4,53 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Users, MapPin, Trophy, Target, Drill } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { AnimatedSection } from '@/components/ui/animated-section';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { HoverCard, HoverCardTrigger, HoverCardContent } from '@/components/ui/hover-card';
+import { Skeleton } from '@/components/ui/skeleton';
+import { useState, useEffect } from 'react';
+
+const aboutTabs = [
+  {
+    id: 'overview',
+    title: 'Overview',
+    content: 'Gulf Technical Operations LLC is a leading provider of oilfield services and solutions. With years of experience and expertise, we deliver innovative solutions to meet the complex challenges of the energy industry.',
+    stats: [
+      { label: 'Years Experience', value: '15+' },
+      { label: 'Global Projects', value: '500+' },
+      { label: 'Expert Team', value: '100+' },
+    ]
+  },
+  {
+    id: 'mission',
+    title: 'Our Mission',
+    content: 'To provide cutting-edge technical solutions and services that enhance operational efficiency, safety, and productivity in the oil and gas industry while maintaining the highest standards of quality and environmental responsibility.',
+    stats: [
+      { label: 'Success Rate', value: '99%' },
+      { label: 'Client Satisfaction', value: '4.9/5' },
+      { label: 'Safety Score', value: '100%' },
+    ]
+  },
+  {
+    id: 'values',
+    title: 'Our Values',
+    content: 'We are committed to excellence, innovation, and sustainability. Our core values include integrity, safety, customer focus, and continuous improvement, driving us to deliver exceptional results for our clients.',
+    stats: [
+      { label: 'ISO Certifications', value: '5' },
+      { label: 'Awards', value: '20+' },
+      { label: 'Green Initiatives', value: '10' },
+    ]
+  }
+];
 
 export function AboutSection() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 1000);
+    return () => clearTimeout(timer);
+  }, []);
   return (
-    <section id="about" className="py-20 bg-white relative overflow-hidden">
+    <section id="about" className="py-20 bg-slate-900">
       {/* Background decorative elements */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-orange-100 to-transparent rounded-full -translate-x-48 -translate-y-48 opacity-30" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-blue-100 to-transparent rounded-full translate-x-48 translate-y-48 opacity-30" />
