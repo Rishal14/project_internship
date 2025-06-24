@@ -1,10 +1,11 @@
 "use client";
 
 import { motion, useInView } from 'framer-motion';
-import { ArrowRight, Users, MapPin, Trophy, Target, Drill, ChevronRight, Award, Globe, Zap } from 'lucide-react';
+import { ArrowRight, Users, MapPin, Trophy, Target, Drill, ChevronRight, Award, Globe, Zap, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { AnimatedSection } from '@/components/ui/animated-section';
 import { Inter, Poppins } from 'next/font/google';
+import { useState, useRef } from 'react';
 
 // Load fonts
 const headingFont = Poppins({
@@ -21,6 +22,20 @@ const bodyFont = Inter({
 });
 
 export function AboutSection() {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  
+  const toggleVideo = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+  
   return (
     <section id="about" className="py-28 bg-gradient-to-b from-slate-50 to-white relative overflow-hidden">
       {/* Background decorative elements */}
@@ -73,14 +88,47 @@ export function AboutSection() {
               viewport={{ once: true, margin: "-100px" }}
               className="relative group"
             >
-              {/* Main image with layered decoration */}
+              {/* Video with layered decoration */}
               <div className="relative z-10 overflow-hidden rounded-3xl shadow-2xl transform transition-all duration-700 group-hover:shadow-2xl group-hover:-translate-y-2">
-                <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-blue-500/5 rounded-3xl" />
-                <img 
-                  src="https://images.unsplash.com/photo-1605152276897-4f618f831968?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" 
-                  alt="Industrial equipment" 
-                  className="w-full h-auto rounded-3xl transform transition-transform duration-1000 group-hover:scale-105"
-                />
+                <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-blue-500/10 rounded-3xl z-20" />
+                
+                {/* Video element */}
+                <div className="relative aspect-video overflow-hidden rounded-3xl">
+                  <video 
+                    ref={videoRef}
+                    className="w-full h-full object-cover transform transition-transform duration-1000 group-hover:scale-105"
+                    poster="https://images.unsplash.com/photo-1605152276897-4f618f831968?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80"
+                    muted
+                    loop
+                  >
+                    <source src="/videos/company-video.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                  
+                  {/* Play button overlay */}
+                  <motion.button
+                    onClick={toggleVideo}
+                    className="absolute inset-0 flex items-center justify-center z-30 bg-black/30 group-hover:bg-black/20 transition-colors duration-300"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <motion.div 
+                      className={`w-20 h-20 rounded-full flex items-center justify-center ${isPlaying ? 'bg-red-600' : 'bg-orange-500'} text-white shadow-lg`}
+                      whileHover={{ scale: 1.1, boxShadow: '0 0 30px rgba(0,0,0,0.2)' }}
+                      transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+                    >
+                      {isPlaying ? (
+                        <motion.div 
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          className="w-6 h-6 bg-white rounded-sm"
+                        />
+                      ) : (
+                        <Play className="w-8 h-8" fill="white" />
+                      )}
+                    </motion.div>
+                  </motion.button>
+                </div>
               </div>
               
               {/* Floating elements with improved animations */}
