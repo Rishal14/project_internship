@@ -1,11 +1,11 @@
 "use client";
 
-import { motion, useScroll, useTransform, useInView } from 'framer-motion';
-import { ArrowRight, Award, Globe, Zap, Drill, ChevronsDown, Play, Sparkles } from 'lucide-react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { ArrowRight, Award, Globe, Zap, Drill, ChevronsDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { FloatingParticles } from '@/components/ui/floating-particles';
 import { Inter, Poppins } from 'next/font/google';
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 // Load fonts
 const headingFont = Poppins({
@@ -22,551 +22,232 @@ const bodyFont = Inter({
 });
 
 export function HeroSection() {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const ref = useRef(null);
+  const [dimensions, setDimensions] = useState({ width: 1200, height: 800 });
+  const [isMounted, setIsMounted] = useState(false);
+
   const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"]
+    target: ref,
+    offset: ["start start", "end start"],
   });
-  
+
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.3]);
+
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({
-        x: (e.clientX / window.innerWidth) * 100,
-        y: (e.clientY / window.innerHeight) * 100,
-      });
-    };
-    
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    setIsMounted(true);
+
+    if (typeof window !== "undefined") {
+      setDimensions({ width: window.innerWidth, height: window.innerHeight });
+
+      const handleResize = () => {
+        setDimensions({ width: window.innerWidth, height: window.innerHeight });
+      };
+
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }
   }, []);
 
   return (
-    <section ref={containerRef} id="home" className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Animated Background with Parallax */}
-      <motion.div 
-        className="absolute inset-0 w-full h-full overflow-hidden"
-        style={{ y }}
-      >
-        {/* Dynamic gradient overlay that follows mouse */}
-        <motion.div
-          className="absolute inset-0 opacity-30"
-          style={{
-            background: `radial-gradient(600px circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(255, 107, 53, 0.15), transparent 40%)`,
-          }}
-        />
-        
-        {/* Video Background */}
+    <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
+      {/* Video Background */}
+      <div className="absolute inset-0 w-full h-full overflow-hidden">
         <video
           autoPlay
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover scale-110"
+          className="absolute inset-0 w-full h-full object-cover"
         >
-          <source src="/videos/hero-bg.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
+          <source
+            src="https://videos.pexels.com/video-files/11363492/11363492-hd_720_1280_30fps.mp4"
+            type="video/mp4"
+          />
+          {/* Fallback image if video fails to load */}
+          <img
+            src="https://cdn.builder.io/api/v1/assets/01354b77542a480c9b459616a3d70d74/screenshot-2025-06-23-104214-1bef77?format=webp&width=1920"
+            alt="Oil field operations"
+            className="w-full h-full object-cover"
+          />
         </video>
-        
-        {/* Animated overlay with breathing effect */}
-        <motion.div 
-          className="absolute inset-0"
-          animate={{
-            background: [
-              "linear-gradient(45deg, rgba(0,0,0,0.6), rgba(255,107,53,0.1))",
-              "linear-gradient(45deg, rgba(0,0,0,0.7), rgba(255,107,53,0.2))",
-              "linear-gradient(45deg, rgba(0,0,0,0.6), rgba(255,107,53,0.1))"
-            ]
-          }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        />
-      </motion.div>
-      
-      {/* Enhanced Floating Particles */}
-      <FloatingParticles />
-      
-      {/* Animated geometric shapes */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          className="absolute top-20 left-10 w-20 h-20 border border-orange-400/30 rounded-full"
-          animate={{
-            rotate: 360,
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            rotate: { duration: 20, repeat: Infinity, ease: "linear" },
-            scale: { duration: 3, repeat: Infinity, ease: "easeInOut" }
-          }}
-        />
-        <motion.div
-          className="absolute top-40 right-20 w-16 h-16 bg-gradient-to-r from-orange-500/20 to-red-500/20 rounded-lg"
-          animate={{
-            rotate: -360,
-            y: [0, -20, 0],
-          }}
-          transition={{
-            rotate: { duration: 15, repeat: Infinity, ease: "linear" },
-            y: { duration: 4, repeat: Infinity, ease: "easeInOut" }
-          }}
-        />
-        <motion.div
-          className="absolute bottom-40 left-20 w-12 h-12 border-2 border-orange-300/40"
-          animate={{
-            rotate: [0, 45, 0],
-            scale: [1, 1.3, 1],
-          }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
+        {/* Dark overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
       </div>
-      
-      <motion.div 
-        className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32"
-        style={{ opacity }}
-      >
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="space-y-10"
-          >
-            {/* Animated badge with sparkle effect */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20, scale: 0.8 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.3, type: "spring", stiffness: 100 }}
-              className="relative inline-block"
-            >
-              <motion.div
-                className="absolute -inset-1 bg-gradient-to-r from-orange-500 to-red-500 rounded-full blur opacity-30"
-                animate={{
-                  scale: [1, 1.1, 1],
-                  opacity: [0.3, 0.5, 0.3],
-                }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              />
-              <div className="relative px-6 py-3 rounded-full bg-orange-500/20 border border-orange-400/30 backdrop-blur-sm">
-                <div className="flex items-center gap-2">
-                  <motion.div
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                  >
-                    <Sparkles className="w-4 h-4 text-orange-300" />
-                  </motion.div>
-                  <span className="text-sm font-medium text-orange-300 tracking-wider">INNOVATING SINCE 2016</span>
-                </div>
-              </div>
-            </motion.div>
 
-            {/* Enhanced animated title */}
-            <div className="space-y-4">
-              <motion.h1 
-                className={`${headingFont.className} text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight`}
+      {/* Animated particles - only render after mount to avoid hydration mismatch */}
+      {isMounted && (
+        <div className="absolute inset-0 overflow-hidden">
+          {[...Array(20)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 bg-orange-400/30 rounded-full"
+              initial={{
+                x: Math.random() * dimensions.width,
+                y: Math.random() * dimensions.height,
+                opacity: 0,
+              }}
+              animate={{
+                y: [null, -100],
+                opacity: [0, 1, 0],
+              }}
+              transition={{
+                duration: Math.random() * 3 + 2,
+                repeat: Infinity,
+                delay: Math.random() * 2,
+                ease: "easeOut",
+              }}
+            />
+          ))}
+        </div>
+      )}
+
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 lg:py-40">
+        <div className="max-w-4xl">
+          {/* Main Heading */}
+          <motion.h1
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <motion.span
+              className="block"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.7 }}
+            >
+              One stop shopping - where oilfield
+            </motion.span>
+            <motion.span
+              className="block text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-orange-300 to-orange-500"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.9 }}
+            >
+              solutions / services is our goal
+            </motion.span>
+          </motion.h1>
+
+          {/* Subtitle */}
+          <motion.p
+            className="text-sm md:text-base lg:text-lg text-gray-200 leading-relaxed max-w-4xl mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
+          >
+            At Gulf Technical Operations LLC, we bring over 40 years of
+            industry-leading experience to every well and project. As the
+            trusted supplier of high-quality equipment and services, we proudly
+            serve the Middle East, North Africa, and Southeast Asia with a
+            commitment to excellence, reliability, and unmatched expertise.
+          </motion.p>
+
+          {/* CTA Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.3, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-wrap items-center gap-6"
+          >
+            <Button
+              size="lg"
+              className="group bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-2xl shadow-orange-500/30 text-base relative overflow-hidden"
+            >
+              <span className="relative z-10">Read More</span>
+              <ArrowRight className="ml-2 h-5 w-5 transform group-hover:translate-x-1 transition-transform relative z-10" />
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
+                initial={{ x: "-100%" }}
+                whileHover={{ x: "100%" }}
+                transition={{ duration: 0.6, ease: "easeInOut" }}
+              />
+            </Button>
+          </motion.div>
+
+          {/* Stats Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.5 }}
+            className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8"
+          >
+            {[
+              { value: "40+", label: "Years Experience", delay: 0 },
+              { value: "500+", label: "Projects Completed", delay: 0.1 },
+              { value: "50+", label: "Countries Served", delay: 0.2 },
+              { value: "99%", label: "Client Satisfaction", delay: 0.3 },
+            ].map((stat, index) => (
+              <motion.div
+                key={index}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.6, delay: 1.7 + stat.delay }}
+                whileHover={{ y: -5, scale: 1.05 }}
+                className="text-center group cursor-pointer"
               >
-                <motion.span 
-                  className="block text-transparent bg-clip-text bg-gradient-to-r from-orange-300 via-orange-200 to-orange-400 mb-4"
-                  animate={{
-                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-                  }}
-                  transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-                  style={{ backgroundSize: "200% 200%" }}
-                >
-                  Oilfield Excellence
-                </motion.span>
-                <motion.span 
-                  className="text-white"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8, delay: 0.6 }}
-                >
-                  Delivered with{" "}
-                  <motion.span
-                    className="relative inline-block"
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <motion.span
-                      className="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-red-500/20 rounded-lg blur-sm"
-                      animate={{
-                        scale: [1, 1.1, 1],
-                        opacity: [0.5, 0.8, 0.5],
-                      }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    />
-                    <span className="relative">Precision & Integrity</span>
-                  </motion.span>
-                </motion.span>
-              </motion.h1>
-            </div>
-            
-            {/* Enhanced description with typewriter effect */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <motion.p 
-                className={`${bodyFont.className} text-lg md:text-xl text-gray-200 leading-relaxed max-w-2xl tracking-wide`}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1, delay: 1 }}
-              >
-                At{" "}
-                <motion.span 
-                  className="font-semibold text-orange-300 relative"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  Gulf Technical Operations LLC
-                  <motion.div
-                    className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-orange-400 to-transparent"
-                    initial={{ width: 0 }}
-                    animate={{ width: "100%" }}
-                    transition={{ duration: 1, delay: 1.5 }}
-                  />
-                </motion.span>
-                , we bring over 40 years of industry-leading 
-                experience to every well and project. As the trusted supplier of high-quality 
-                equipment and services, we proudly serve the{" "}
-                <motion.span 
-                  className="text-white font-medium"
-                  whileHover={{ color: "#fed7aa" }}
-                  transition={{ duration: 0.2 }}
-                >
-                  Middle East
-                </motion.span>
-                ,{" "}
-                <motion.span 
-                  className="text-white font-medium"
-                  whileHover={{ color: "#fed7aa" }}
-                  transition={{ duration: 0.2 }}
-                >
-                  North Africa
-                </motion.span>
-                , and{" "}
-                <motion.span 
-                  className="text-white font-medium"
-                  whileHover={{ color: "#fed7aa" }}
-                  transition={{ duration: 0.2 }}
-                >
-                  Southeast Asia
-                </motion.span>{" "}
-                with a commitment to excellence, reliability, and unmatched expertise.
-              </motion.p>
-            </motion.div>
-
-            {/* Enhanced CTA buttons with magnetic effect */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-wrap items-center gap-6 pt-4"
-            >
-              <motion.div
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              >
-                <Button 
-                  size="lg" 
-                  className={`${bodyFont.className} group relative overflow-hidden bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-8 py-6 rounded-xl font-semibold transition-all duration-300 hover:shadow-2xl shadow-orange-500/30 text-lg`}
-                >
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                    initial={{ x: "-100%" }}
-                    whileHover={{ x: "100%" }}
-                    transition={{ duration: 0.6 }}
-                  />
-                  <span className="relative z-10 flex items-center">
-                    Explore Our Solutions
-                    <motion.div
-                      className="ml-2"
-                      animate={{ x: [0, 5, 0] }}
-                      transition={{ duration: 1.5, repeat: Infinity }}
-                    >
-                      <ArrowRight className="h-5 w-5" />
-                    </motion.div>
-                  </span>
-                </Button>
+                <div className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-orange-300 to-orange-500 group-hover:from-orange-200 group-hover:to-orange-400 transition-all duration-300">
+                  {stat.value}
+                </div>
+                <div className="text-sm md:text-base text-gray-300 mt-2 group-hover:text-white transition-colors duration-300 font-medium">
+                  {stat.label}
+                </div>
               </motion.div>
-              
-              <motion.div
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              >
-                <Button 
-                  variant="ghost" 
-                  size="lg"
-                  className={`${bodyFont.className} group relative overflow-hidden border-2 border-white/20 text-white hover:bg-white/10 hover:border-white/30 backdrop-blur-sm px-8 py-6 rounded-xl font-semibold transition-all duration-300 text-lg`}
-                >
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-orange-500/10 to-red-500/10"
-                    initial={{ scale: 0, opacity: 0 }}
-                    whileHover={{ scale: 1, opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                  <span className="relative z-10 flex items-center">
-                    <Play className="mr-2 w-5 h-5" />
-                    Watch Demo
-                  </span>
-                </Button>
-              </motion.div>
-            </motion.div>
-            
-            {/* Enhanced trust indicator */}
-            <motion.div 
-              className="mt-12 flex items-center space-x-6 text-sm text-gray-300"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.4, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <motion.div 
-                className="h-px bg-gradient-to-r from-orange-400/30 to-transparent"
-                initial={{ width: 0 }}
-                animate={{ width: "3rem" }}
-                transition={{ duration: 1, delay: 1.6 }}
-              />
-              <motion.span
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 1.8 }}
-              >
-                Trusted by leading energy companies worldwide
-              </motion.span>
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-              >
-                <Award className="w-4 h-4 text-orange-400" />
-              </motion.div>
-            </motion.div>
-          </motion.div>
-
-          {/* Enhanced stats section with 3D effects */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="space-y-6 relative"
-          >
-            {/* Animated background glow */}
-            <motion.div 
-              className="absolute -top-16 -right-16 w-64 h-64 bg-orange-500/10 rounded-full filter blur-3xl"
-              animate={{ 
-                scale: [1, 1.2, 1],
-                opacity: [0.3, 0.6, 0.3],
-                rotate: [0, 180, 360]
-              }}
-              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            />
-            
-            {/* Enhanced Stats Cards with magnetic hover */}
-            <div className="grid grid-cols-2 gap-6 relative z-10">
-              {[
-                { icon: Award, value: "40+", label: "Years Experience", color: "from-orange-500 to-red-500", delay: 0.2 },
-                { icon: Globe, value: "60+", label: "Rigs Serviced", color: "from-blue-500 to-cyan-500", delay: 0.4 },
-              ].map((stat, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30, rotateX: -15 }}
-                  animate={{ opacity: 1, y: 0, rotateX: 0 }}
-                  transition={{ 
-                    duration: 0.8, 
-                    delay: stat.delay,
-                    type: "spring",
-                    stiffness: 100
-                  }}
-                  whileHover={{ 
-                    y: -8, 
-                    rotateX: 5,
-                    rotateY: 5,
-                    scale: 1.05,
-                    boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)' 
-                  }}
-                  className="relative overflow-hidden group bg-gradient-to-br from-gray-900/80 to-gray-800/80 backdrop-blur-sm p-6 rounded-2xl text-center border border-gray-700/50 hover:border-orange-500/40 transition-all duration-300"
-                  style={{ transformStyle: 'preserve-3d' }}
-                >
-                  {/* Animated background gradient */}
-                  <motion.div
-                    className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
-                    initial={{ scale: 0 }}
-                    whileHover={{ scale: 1 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                  
-                  {/* Floating icon with complex animation */}
-                  <motion.div
-                    className="relative z-10"
-                    animate={{ 
-                      rotate: [0, 5, -5, 0],
-                      y: [0, -5, 0] 
-                    }}
-                    transition={{ 
-                      duration: 6, 
-                      repeat: Infinity, 
-                      ease: "easeInOut",
-                      delay: index * 0.5
-                    }}
-                    whileHover={{
-                      scale: 1.2,
-                      rotate: 360,
-                    }}
-                  >
-                    <stat.icon className="h-10 w-10 text-orange-400 mx-auto mb-4 drop-shadow-lg" />
-                  </motion.div>
-                  
-                  {/* Animated counter */}
-                  <motion.div 
-                    className="text-3xl font-bold text-white mb-1 bg-clip-text text-transparent bg-gradient-to-r from-orange-300 to-orange-200"
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ 
-                      duration: 0.5, 
-                      delay: stat.delay + 0.3,
-                      type: "spring",
-                      stiffness: 200
-                    }}
-                    whileHover={{ scale: 1.1 }}
-                  >
-                    {stat.value}
-                  </motion.div>
-                  
-                  <motion.div 
-                    className="text-sm font-medium text-gray-300 tracking-wider"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: stat.delay + 0.5 }}
-                  >
-                    {stat.label}
-                  </motion.div>
-                  
-                  {/* Shine effect */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent"
-                    initial={{ x: "-100%" }}
-                    whileHover={{ x: "100%" }}
-                    transition={{ duration: 0.6 }}
-                  />
-                </motion.div>
-              ))}
-              
-              {/* Full-width excellence card */}
-              <motion.div 
-                initial={{ opacity: 0, y: 30, rotateX: -15 }}
-                animate={{ opacity: 1, y: 0, rotateX: 0 }}
-                transition={{ 
-                  duration: 0.8, 
-                  delay: 0.6,
-                  type: "spring",
-                  stiffness: 100
-                }}
-                whileHover={{ 
-                  y: -8, 
-                  rotateX: 5,
-                  scale: 1.02,
-                  boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1)' 
-                }}
-                className="relative overflow-hidden group bg-gradient-to-br from-gray-900/80 to-gray-800/80 backdrop-blur-sm p-6 rounded-2xl text-center col-span-2 border border-gray-700/50 hover:border-orange-500/40 transition-all duration-300"
-              >
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-red-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                />
-                
-                <motion.div
-                  animate={{ y: [0, -5, 0] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                >
-                  <Drill className="h-8 w-8 text-orange-400 mx-auto mb-3" />
-                </motion.div>
-                
-                <motion.div 
-                  className="text-2xl font-bold text-white"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  Excellence
-                </motion.div>
-                <div className="text-sm text-gray-300">Reliability & Unmatched Expertise</div>
-              </motion.div>
-            </div>
-
-            {/* Floating oil rig decoration with complex animation */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8, rotateY: -30 }}
-              animate={{ opacity: 0.3, scale: 1, rotateY: 0 }}
-              transition={{ duration: 2, delay: 1 }}
-              className="absolute top-1/2 right-10 transform -translate-y-1/2 oil-rig-silhouette hidden xl:block"
-            >
-              <motion.div 
-                className="w-32 h-48 opacity-20"
-                animate={{
-                  rotateY: [0, 10, -10, 0],
-                  scale: [1, 1.05, 1],
-                }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              >
-                <Drill className="w-full h-full text-orange-300 animate-oil-pump" />
-              </motion.div>
-            </motion.div>
+            ))}
           </motion.div>
         </div>
-      </motion.div>
+      </div>
 
-      {/* Enhanced scroll indicator with magnetic effect */}
+      {/* Scroll Indicator */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         transition={{ delay: 2 }}
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
       >
         <motion.div
           animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-          whileHover={{ scale: 1.1 }}
-          className="relative group cursor-pointer"
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="flex flex-col items-center text-white/60 hover:text-orange-400 transition-colors duration-300 cursor-pointer"
         >
+          <span className="text-sm mb-2 font-medium">Scroll to explore</span>
           <motion.div
-            className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center backdrop-blur-sm group-hover:border-orange-400/70 transition-colors duration-300"
-            whileHover={{ boxShadow: "0 0 20px rgba(255, 107, 53, 0.3)" }}
-          >
-            <motion.div
-              animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-              className="w-1 h-3 bg-orange-400 rounded-full mt-2 group-hover:bg-orange-300"
-            />
-          </motion.div>
-          
-          {/* Ripple effect */}
-          <motion.div
-            className="absolute inset-0 border-2 border-orange-400/30 rounded-full"
-            animate={{
-              scale: [1, 1.5, 1],
-              opacity: [0.5, 0, 0.5],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeOut"
-            }}
+            animate={{ y: [0, 12, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+            className="w-1 h-3 bg-orange-400 rounded-full mt-2"
           />
         </motion.div>
       </motion.div>
+
+      {/* Background Animation Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute top-1/4 right-1/4 w-64 h-64 bg-orange-500/5 rounded-full blur-3xl"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.6, 0.3],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-red-500/5 rounded-full blur-3xl"
+          animate={{
+            scale: [1.2, 1, 1.2],
+            opacity: [0.2, 0.4, 0.2],
+          }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2,
+          }}
+        />
+      </div>
     </section>
   );
 }
