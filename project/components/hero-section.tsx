@@ -1,9 +1,24 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, ChevronDown } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useRef, useState, useEffect } from "react";
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { ArrowRight, Award, Globe, Zap, Drill, ChevronsDown } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { FloatingParticles } from '@/components/ui/floating-particles';
+import { Inter, Poppins } from 'next/font/google';
+
+// Load fonts
+const headingFont = Poppins({
+  weight: '600', // SemiBold
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-heading',
+});
+
+const bodyFont = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-body',
+});
 
 export function HeroSection() {
   const ref = useRef(null);
@@ -34,16 +49,9 @@ export function HeroSection() {
   }, []);
 
   return (
-    <section
-      id="home"
-      className="relative min-h-screen flex items-center overflow-hidden"
-      ref={ref}
-    >
-      {/* Video Background with Parallax */}
-      <motion.div
-        className="absolute inset-0 w-full h-full overflow-hidden"
-        style={{ y, opacity }}
-      >
+    <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
+      {/* Video Background */}
+      <div className="absolute inset-0 w-full h-full overflow-hidden">
         <video
           autoPlay
           loop
@@ -205,11 +213,10 @@ export function HeroSection() {
         >
           <span className="text-sm mb-2 font-medium">Scroll to explore</span>
           <motion.div
-            animate={{ y: [0, 5, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <ChevronDown className="w-6 h-6" />
-          </motion.div>
+            animate={{ y: [0, 12, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+            className="w-1 h-3 bg-orange-400 rounded-full mt-2"
+          />
         </motion.div>
       </motion.div>
 

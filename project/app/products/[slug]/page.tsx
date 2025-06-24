@@ -1,5 +1,6 @@
-import { products, Product } from '@/lib/products';
+import { products } from '@/lib/products';
 import ProductClient from './ProductClient';
+import type { Product } from '@/lib/products';
 
 // This function runs at build time to generate static paths
 export async function generateStaticParams() {
@@ -21,14 +22,23 @@ interface ProductPageProps {
 }
 
 export default function ProductPage({ params }: ProductPageProps) {
-  const product = products.find((p: Product) => p.slug === params.slug);
+  const product = products.find((p) => p.slug === params.slug);
   
   if (!product) {
-    return <div>Product not found</div>;
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold">Product not found</h1>
+          <a href="/products" className="mt-4 text-blue-600 hover:underline">
+            Back to Products
+          </a>
+        </div>
+      </div>
+    );
   }
   
   const relatedProducts = products
-    .filter((p: Product) => p.slug !== params.slug)
+    .filter((p) => p.category === product.category && p.slug !== product.slug)
     .slice(0, 3);
 
   return <ProductClient product={product} relatedProducts={relatedProducts} />;

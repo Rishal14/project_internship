@@ -5,7 +5,6 @@ import { ArrowRight, Users, MapPin, Trophy, Target, Drill, ChevronRight, Award, 
 import { Button } from '@/components/ui/button';
 import { AnimatedSection } from '@/components/ui/animated-section';
 import { Inter, Poppins } from 'next/font/google';
-import { useState, useRef } from 'react';
 
 // Load fonts
 const headingFont = Poppins({
@@ -22,22 +21,8 @@ const bodyFont = Inter({
 });
 
 export function AboutSection() {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  
-  const toggleVideo = () => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
-      } else {
-        videoRef.current.play();
-      }
-      setIsPlaying(!isPlaying);
-    }
-  };
-  
   return (
-    <section id="about" className="py-28 bg-gradient-to-b from-slate-50 to-white relative overflow-hidden">
+    <section id="about" className="py-20 bg-white relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute top-0 left-0 w-[40rem] h-[40rem] bg-gradient-to-br from-orange-50 to-transparent rounded-full -translate-x-1/2 -translate-y-1/2 opacity-70" />
       <div className="absolute bottom-0 right-0 w-[40rem] h-[40rem] bg-gradient-to-tl from-blue-50 to-transparent rounded-full translate-x-1/2 translate-y-1/2 opacity-70" />
