@@ -33,7 +33,7 @@ export function AboutSection() {
     offset: ["start end", "end start"]
   });
   
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+  const y = useTransform(scrollYProgress, [0, 1], ["-20%", "0%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 1, 0.8]);
   
   const toggleVideo = () => {
@@ -64,9 +64,13 @@ export function AboutSection() {
 
   return (
     <section ref={sectionRef} id="about" className="py-20 relative overflow-hidden min-h-screen flex items-center">
+      {/* Static overlays to prevent white flash */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
+
       {/* Video Background with Overlay */}
       <motion.div 
-        className="absolute inset-0 w-full h-full overflow-hidden"
+        className="absolute top-0 left-0 w-full h-[140%] overflow-hidden"
         style={{ y, opacity }}
       >
         <video
@@ -84,10 +88,6 @@ export function AboutSection() {
             className="w-full h-full object-cover"
           />
         </video>
-        
-        {/* Gradient overlays for better text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
         
         {/* Animated overlay with breathing effect */}
         <motion.div 
