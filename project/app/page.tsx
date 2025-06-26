@@ -20,19 +20,32 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="min-h-screen">
+    <main className="relative min-h-screen overflow-hidden">
+      {/* 🔧 Background Image Layer */}
+      <div className="absolute inset-0 z-0">
+        <div
+          className="w-full h-full bg-cover bg-center"
+          style={{
+            backgroundImage: `url('/oil.png')`, // ⛽ Replace with your image path
+          }}
+        />
+        {/* Optional dark overlay for better contrast */}
+        <div className="absolute inset-0 bg-black/60" />
+      </div>
+
+      {/* 🧱 Main Content */}
       <AnimatePresence>
         {showSplash && <SplashScreen />}
       </AnimatePresence>
 
       {!showSplash && (
-        <>
+        <div className="relative z-10">
           <Navigation />
           <HeroSection splashDone />
           <AboutSection />
           <ProductsSection />
           <Footer />
-        </>
+        </div>
       )}
     </main>
   );
