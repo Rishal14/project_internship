@@ -121,16 +121,16 @@ export function ServicesSection() {
         className="absolute inset-0 bg-cover bg-center bg-fixed"
         style={{ 
           backgroundImage: "url('/service-section.jpg')",
-          opacity: 0.4,
-          filter: 'contrast(1.2) brightness(0.7)'
+          opacity: 0.6,
+          filter: 'contrast(1.3) brightness(0.8)'
         }}
       />
-      <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-gray-900/70 to-black/80" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-gray-900/40 to-gray-900/80" />
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-gray-900/70" />
+      <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-gray-900/60 to-black/70" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-gray-900/30 to-gray-900/70" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-gray-900/60" />
       
       {/* Oil rig silhouettes */}
-      <div className="absolute bottom-0 left-0 w-full h-32 bg-contain bg-repeat-x z-10 opacity-30"
+      <div className="absolute bottom-0 left-0 w-full h-32 bg-contain bg-repeat-x z-10 opacity-40"
         style={{ 
           backgroundImage: "url('/oil-rig-silhouette.png')",
           backgroundPosition: 'bottom center'
@@ -183,7 +183,7 @@ export function ServicesSection() {
                 <CarouselItem key={index} className="md:basis-1/2 pl-4">
                   <Card className="bg-white border border-gray-300 rounded-lg shadow-lg hover:shadow-gray-400/30 hover:border-gray-400 transition-all duration-300 group relative overflow-hidden h-full flex flex-col">
                     <CardHeader className="p-3">
-                      <div className="h-40 w-full mb-2 relative overflow-hidden rounded-lg bg-gray-700/30 flex items-center justify-center border border-gray-600/30 group-hover:border-yellow-400/20 transition-all duration-300">
+                      <div className="h-40 w-full mb-2 relative overflow-hidden rounded-lg bg-gray-100 flex items-center justify-center border border-gray-200 group-hover:border-gray-400 transition-all duration-300">
                         <img 
                           src={service.image} 
                           className="object-contain w-full h-full p-4 transform group-hover:scale-105 transition-transform duration-500"
@@ -199,23 +199,23 @@ export function ServicesSection() {
               ))}
               {isLoading && Array.from({ length: 3 }).map((_, index) => (
                 <CarouselItem key={index} className="md:basis-1/2 pl-4">
-                  <Card className="bg-gray-800/50 border-gray-700/50 rounded-lg shadow-lg h-[220px]">
+                  <Card className="bg-white border border-gray-300 rounded-lg shadow-lg h-[220px]">
                     <CardHeader className="p-3">
-                      <Skeleton className="h-40 w-full rounded-lg bg-gray-700" />
-                      <Skeleton className="h-6 w-1/2 mx-auto mt-4 bg-gray-700" />
+                      <Skeleton className="h-40 w-full rounded-lg bg-gray-200" />
+                      <Skeleton className="h-6 w-1/2 mx-auto mt-4 bg-gray-200" />
                     </CardHeader>
                     <CardContent className="p-0">
                     </CardContent>
                     <CardFooter className="p-2 mt-auto">
-                      <Skeleton className="h-6 w-full bg-gray-700 rounded-md" />
+                      <Skeleton className="h-6 w-full bg-gray-200 rounded-md" />
                     </CardFooter>
                   </Card>
                 </CarouselItem>
               ))}
             </CarouselContent>
             <div className="flex justify-center mt-4 space-x-2">
-              <CarouselPrevious className="relative inset-0 translate-y-0 bg-yellow-400 hover:bg-gray-500 text-black border-none" />
-              <CarouselNext className="relative inset-0 translate-y-0 bg-yellow-400 hover:bg-gray-500 text-black border-none" />
+              <CarouselPrevious className="relative inset-0 translate-y-0 bg-gray-200 hover:bg-gray-300 text-black border-none" />
+              <CarouselNext className="relative inset-0 translate-y-0 bg-gray-200 hover:bg-gray-300 text-black border-none" />
             </div>
           </Carousel>
         </div>
@@ -225,15 +225,15 @@ export function ServicesSection() {
           {isLoading ? (
             // Skeleton loading state
             Array.from({ length: 7 }).map((_, index) => (
-              <Card key={index} className="bg-gray-800/50 border-gray-700/50 rounded-lg shadow-lg h-[220px]">
+              <Card key={index} className="bg-white border border-gray-300 rounded-lg shadow-lg h-[220px]">
                     <CardHeader className="p-3">
-                      <Skeleton className="h-40 w-full rounded-lg bg-gray-700" />
-                      <Skeleton className="h-6 w-1/2 mx-auto mt-4 bg-gray-700" />
+                      <Skeleton className="h-40 w-full rounded-lg bg-gray-200" />
+                      <Skeleton className="h-6 w-1/2 mx-auto mt-4 bg-gray-200" />
                     </CardHeader>
                     <CardContent className="p-0">
                     </CardContent>
                     <CardFooter className="p-2 mt-auto">
-                      <Skeleton className="h-6 w-full bg-gray-700 rounded-md" />
+                      <Skeleton className="h-6 w-full bg-gray-200 rounded-md" />
                     </CardFooter>
                   </Card>
             ))
@@ -262,9 +262,9 @@ export function ServicesSection() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1, ease: [0.25, 1, 0.5, 1] }}
                 >
-                  <Card className="bg-white-800/40 border border-gray-700/30 rounded-lg shadow-lg hover:shadow-gray-400/10 hover:border-yellow-400/40 transition-all duration-300 group relative overflow-hidden h-full flex flex-col">
+                  <Card className="bg-white border border-gray-300 rounded-lg shadow-lg hover:shadow-gray-400/30 hover:border-gray-400 transition-all duration-300 group relative overflow-hidden h-full flex flex-col">
                     <CardHeader className="p-3">
-                      <div className="h-40 w-full mb-2 relative overflow-hidden rounded-lg bg-gray-700/30 flex items-center justify-center border border-gray-600/30 group-hover:border-yellow-400/20 transition-all duration-300">
+                      <div className="h-40 w-full mb-2 relative overflow-hidden rounded-lg bg-gray-100 flex items-center justify-center border border-gray-200 group-hover:border-gray-400 transition-all duration-300">
                         <img 
                           src={service.image} 
                           className="object-contain w-full h-full p-4 transform group-hover:scale-105 transition-transform duration-500"
