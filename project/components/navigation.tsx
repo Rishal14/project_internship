@@ -67,7 +67,7 @@ export function Navigation() {
           {/* Logo only */}
           <div className="flex items-center">
             <Image
-              src="/logo.png"
+              src="/Bitmap.png"
               alt="Company Logo"
               width={60}
               height={60}
