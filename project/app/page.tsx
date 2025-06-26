@@ -5,6 +5,7 @@ import { Navigation } from "@/components/navigation";
 import { HeroSection } from "@/components/hero-section";
 import { AboutSection } from "@/components/about-section";
 import { ProductsSection } from "@/components/products-section";
+import { ServicesSection } from "@/components/services-section";
 import { Footer } from "@/components/footer";
 import { SplashScreen } from "@/components/SplashScreen";
 import { AnimatePresence } from "framer-motion";
@@ -44,6 +45,7 @@ export default function Home() {
           <HeroSection splashDone />
           <AboutSection />
           <ProductsSection />
+          <ServicesSection />
           <Footer />
         </div>
       )}

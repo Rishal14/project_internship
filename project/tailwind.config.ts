@@ -8,6 +8,10 @@ const config: Config = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    fontFamily: {
+      sans: ['Tolyer No.1', 'sans-serif'],
+      heading: ['Tolyer No.1', 'sans-serif'],
+    },
     container: {
       center: true,
       padding: "2rem",
