@@ -358,7 +358,7 @@ export function ServicesSection() {
                 animate={controls}
               />
               <motion.h2 
-                className="text-5xl md:text-6xl font-bold text-white relative"
+                className="text-4xl md:text-5xl font-bold text-white relative"
                 whileHover={{ 
                   textShadow: "0 0 30px rgba(250, 204, 21, 0.6)" 
                 }}
