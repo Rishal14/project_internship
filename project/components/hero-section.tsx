@@ -73,14 +73,16 @@ export function HeroSection({ splashDone }: Props) {
 
           {/* Button */}
           <motion.button
-            onClick={scrollToAbout}
-            className="bg-yellow-400 text-black px-6 py-3 text-base font-semibold shadow-md hover:bg-yellow-300 transition rounded-none"
-            initial={{ opacity: 0, y: 10 }}
-            animate={splashDone ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-            transition={{ delay: 1.2, duration: 0.8 }}
-          >
-            Who We Are
-          </motion.button>
+  onClick={scrollToAbout}
+  className="bg-yellow-400 text-black px-8 py-3 text-base font-semibold rounded-full shadow-lg hover:bg-yellow-300 hover:shadow-xl transition-all duration-300"
+  initial={{ opacity: 0, y: 10 }}
+  animate={splashDone ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+  transition={{ delay: 1.2, duration: 0.8 }}
+  whileHover={{ scale: 1.05 }}
+  whileTap={{ scale: 0.95 }}
+>
+  Who We Are
+</motion.button>
         </div>
       </div>
     </section>

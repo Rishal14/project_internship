@@ -74,24 +74,22 @@ export function AboutSection() {
       <div className="absolute inset-0 bg-gray-900/80" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="mb-12 text-center">
-          <motion.h2 
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="text-3xl font-bold text-white inline-block"
-          >
-            About Our Company
-          </motion.h2>
-          <motion.div 
-            initial={{ width: 0 }}
-            whileInView={{ width: "100px" }}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            viewport={{ once: true }}
-            className="h-1 bg-amber-600 mx-auto mt-3"
-          />
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-12"
+        >
+          <div className="inline-block mb-4">
+            <div className="flex items-center justify-center space-x-3">
+              <div className="h-1 w-12 bg-yellow-400"></div>
+              <h2 className="text-4xl md:text-5xl font-bold text-white">About Our Company</h2>
+              <div className="h-1 w-12 bg-yellow-400"></div>
+            </div>
+            <div className="h-1 w-24 bg-yellow-400/50 mx-auto mt-2"></div>
+          </div>
+        </motion.div>
         
         <motion.div
           variants={containerVariants}

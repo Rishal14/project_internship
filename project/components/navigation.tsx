@@ -62,50 +62,55 @@ export function Navigation() {
         scrolled ? "bg-black/30 backdrop-blur-sm" : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo only */}
-          <div className="flex items-center">
-            <Image
-              src="/Bitmap.png"
-              alt="Company Logo"
-              width={60}
-              height={60}
-              className="h-12 w-auto object-contain"
-              priority
-            />
-          </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        {/* Logo with spacing and scale */}
+        <motion.div
+          animate={{
+            scale: scrolled ? 0.6 : 1,
+            marginTop: scrolled ? "0.5rem" : "3rem", // 0.5rem = mt-2, 3rem = mt-12
+          }}
+          transition={{ duration: 0.3 }}
+          className="origin-top-left"
+        >
+          <Image
+            src="/Bitmap.png"
+            alt="Company Logo"
+            width={120}
+            height={120}
+            className="object-contain h-auto"
+            priority
+          />
+        </motion.div>
 
-          {/* Desktop nav */}
-          <div className="hidden lg:flex space-x-6 text-sm font-medium tracking-wide">
-            {navItems.map((item) => {
-              const isActive = activeSection === item.href.substring(1);
-              return (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  onClick={(e) => scrollToSection(e, item.href)}
-                  className={`relative py-2 transition-all duration-300 ${
-                    isActive
-                      ? "text-yellow-400"
-                      : "text-white hover:text-yellow-400"
-                  }`}
-                >
-                  {item.name}
-                  {isActive && (
-                    <span className="absolute left-0 bottom-0 w-full h-0.5 bg-yellow-400 rounded-md" />
-                  )}
-                </a>
-              );
-            })}
-          </div>
+        {/* Desktop nav */}
+        <div className="hidden lg:flex space-x-6 text-sm font-medium tracking-wide">
+          {navItems.map((item) => {
+            const isActive = activeSection === item.href.substring(1);
+            return (
+              <a
+                key={item.name}
+                href={item.href}
+                onClick={(e) => scrollToSection(e, item.href)}
+                className={`relative py-2 transition-all duration-300 ${
+                  isActive
+                    ? "text-yellow-400"
+                    : "text-white hover:text-yellow-400"
+                }`}
+              >
+                {item.name}
+                {isActive && (
+                  <span className="absolute left-0 bottom-0 w-full h-0.5 bg-yellow-400 rounded-md" />
+                )}
+              </a>
+            );
+          })}
+        </div>
 
-          {/* Mobile Menu Button */}
-          <div className="lg:hidden">
-            <button onClick={() => setIsOpen(!isOpen)} className="text-white">
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
-          </div>
+        {/* Mobile Menu Button */}
+        <div className="lg:hidden">
+          <button onClick={() => setIsOpen(!isOpen)} className="text-white">
+            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
         </div>
       </div>
 

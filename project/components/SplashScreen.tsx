@@ -26,7 +26,7 @@ export function SplashScreen() {
             transition={{ type: "spring", stiffness: 120, damping: 12 }}
           >
             <Image
-              src="/logo.png"
+              src="/Bitmap.png"
               alt="Company Logo"
               width={150}
               height={150}
