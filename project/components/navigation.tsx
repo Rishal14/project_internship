@@ -8,14 +8,15 @@ import Image from "next/image";
 const navItems = [
   { name: "Home", href: "#home" },
   { name: "About Us", href: "#about" },
+  { name: "Services", href: "#services" },
   { name: "Our Products", href: "#products" },
-  { name: "Our Services", href: "#services" },
-  { name: "Our Gallery", href: "#gallery" },
-  { name: "Certification", href: "#certification" },
-  { name: "Downloads", href: "#downloads" },
-  { name: "FAQs", href: "#faqs" },
+
+
+
+  
   { name: "Contact Us", href: "#contact" },
-  { name: "Calculator", href: "#calculator" },
+  { name: "Download", href: "#download" },
+  { name: "Company Profile", href: "#company" },
 ];
 
 export function Navigation() {

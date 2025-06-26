@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, ArrowDown, CheckCircle } from "lucide-react";
+import { ArrowRight, ArrowDown, CheckCircle, Sparkles } from "lucide-react";
 import Image from "next/image";
 import { products as allProducts } from "@/lib/products";
 
@@ -49,14 +49,47 @@ export function ProductsSection() {
           transition={{ duration: 0.8 }}
           className="text-center mb-12"
         >
-          <div className="inline-block mb-4">
-            <div className="flex items-center justify-center space-x-3">
-              <div className="h-1 w-12 bg-yellow-400"></div>
-              <h2 className="text-4xl md:text-5xl font-bold text-white">Our Products</h2>
-              <div className="h-1 w-12 bg-yellow-400"></div>
-            </div>
-            <div className="h-1 w-24 bg-yellow-400/50 mx-auto mt-2"></div>
+          <div className="inline-block mb-4 relative">
+            <motion.div
+              initial={{ width: 0 }}
+              whileInView={{ width: '48px' }}
+              transition={{ duration: 0.7, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="h-1 w-12 bg-yellow-400 inline-block"
+            />
+            <motion.h2
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="text-4xl md:text-5xl font-bold text-white inline-block mx-4 relative"
+              whileHover={{ scale: 1.08, textShadow: "0 0 30px rgba(250, 204, 21, 0.6)" }}
+            >
+              Our Products
+              <motion.div
+                className="absolute -top-3 -right-8"
+                animate={{ rotate: [0, 360], scale: [1, 1.3, 1] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                whileHover={{ scale: 1.3 }}
+              >
+                <Sparkles className="w-8 h-8 text-yellow-400" />
+              </motion.div>
+            </motion.h2>
+            <motion.div
+              initial={{ width: 0 }}
+              whileInView={{ width: '48px' }}
+              transition={{ duration: 0.7, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="h-1 w-12 bg-yellow-400 inline-block"
+            />
           </div>
+          <motion.div
+            initial={{ width: 0 }}
+            whileInView={{ width: '96px' }}
+            transition={{ duration: 0.7, delay: 0.5 }}
+            viewport={{ once: true }}
+            className="h-1 bg-yellow-400/50 mx-auto mt-2"
+          />
         </motion.div>
 
         {/* Cards */}

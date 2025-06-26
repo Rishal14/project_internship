@@ -81,7 +81,7 @@ export function HeroSection({ splashDone }: Props) {
   whileHover={{ scale: 1.05 }}
   whileTap={{ scale: 0.95 }}
 >
-  Who We Are
+  Read more
 </motion.button>
         </div>
       </div>
