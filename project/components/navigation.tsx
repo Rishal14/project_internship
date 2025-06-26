@@ -21,9 +21,12 @@ const navItems = [
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+
       const current = navItems.find((item) => {
         const el = document.getElementById(item.href.substring(1));
         if (el) {
@@ -32,6 +35,7 @@ export function Navigation() {
         }
         return false;
       });
+
       if (current) setActiveSection(current.href.substring(1));
     };
 
@@ -54,32 +58,46 @@ export function Navigation() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ type: "spring", stiffness: 100 }}
-      className="fixed top-0 left-0 w-full z-50 bg-transparent text-white"
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        scrolled ? "bg-black/30 backdrop-blur-sm" : "bg-transparent"
+      }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <div className="flex items-center space-x-3">
-            <Image src="/logo.png" alt="MSG Logo" width={40} height={40} className="h-10" />
-            <span className="text-2xl font-bold tracking-wide">MSG</span>
+          {/* Logo only */}
+          <div className="flex items-center">
+            <Image
+              src="/logo.png"
+              alt="Company Logo"
+              width={60}
+              height={60}
+              className="h-12 w-auto object-contain"
+              priority
+            />
           </div>
 
           {/* Desktop nav */}
           <div className="hidden lg:flex space-x-6 text-sm font-medium tracking-wide">
-            {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                onClick={(e) => scrollToSection(e, item.href)}
-                className={`relative py-2 transition-all ${
-                  activeSection === item.href.substring(1)
-                    ? "text-yellow-400 border-b-2 border-yellow-400"
-                    : "hover:text-yellow-400"
-                }`}
-              >
-                {item.name}
-              </a>
-            ))}
+            {navItems.map((item) => {
+              const isActive = activeSection === item.href.substring(1);
+              return (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  onClick={(e) => scrollToSection(e, item.href)}
+                  className={`relative py-2 transition-all duration-300 ${
+                    isActive
+                      ? "text-yellow-400"
+                      : "text-white hover:text-yellow-400"
+                  }`}
+                >
+                  {item.name}
+                  {isActive && (
+                    <span className="absolute left-0 bottom-0 w-full h-0.5 bg-yellow-400 rounded-md" />
+                  )}
+                </a>
+              );
+            })}
           </div>
 
           {/* Mobile Menu Button */}
@@ -94,20 +112,21 @@ export function Navigation() {
       {/* Mobile nav */}
       {isOpen && (
         <div className="lg:hidden bg-black/90 backdrop-blur-sm px-6 py-4 space-y-2 text-white">
-          {navItems.map((item) => (
-            <a
-              key={item.name}
-              href={item.href}
-              onClick={(e) => scrollToSection(e, item.href)}
-              className={`block py-2 ${
-                activeSection === item.href.substring(1)
-                  ? "text-yellow-400"
-                  : "hover:text-yellow-400"
-              }`}
-            >
-              {item.name}
-            </a>
-          ))}
+          {navItems.map((item) => {
+            const isActive = activeSection === item.href.substring(1);
+            return (
+              <a
+                key={item.name}
+                href={item.href}
+                onClick={(e) => scrollToSection(e, item.href)}
+                className={`block py-2 ${
+                  isActive ? "text-yellow-400" : "hover:text-yellow-400"
+                }`}
+              >
+                {item.name}
+              </a>
+            );
+          })}
         </div>
       )}
     </motion.nav>
