@@ -44,8 +44,8 @@ export default function Home() {
           <Navigation />
           <HeroSection splashDone />
           <AboutSection />
-          <ProductsSection />
           <ServicesSection />
+          <ProductsSection />
           <Footer />
         </div>
       )}

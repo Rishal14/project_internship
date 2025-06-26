@@ -65,13 +65,13 @@ export function AboutSection() {
   };
 
   return (
-    <section ref={sectionRef} id="about" className="py-20 relative overflow-hidden bg-slate-900 text-white">
-      {/* Professional industry-themed background */}
+    <section ref={sectionRef} id="about" className="py-24 relative overflow-hidden bg-gray-900 text-white">
+      {/* Static, industry-themed background */}
       <div 
-        className="absolute inset-0 bg-cover bg-center opacity-5"
-        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1517420704952-d9f39e95b43e?q=80&w=2940&auto=format&fit=crop')" }}
+        className="absolute inset-0 bg-cover bg-center opacity-10"
+        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1565263648353-cb56a7454545?q=80&w=2940&auto=format&fit=crop')" }}
       />
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900" />
+      <div className="absolute inset-0 bg-gray-900/80" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="mb-12 text-center">
@@ -122,7 +122,7 @@ export function AboutSection() {
                 variants={buttonVariants}
                 whileHover="hover"
                 whileTap="tap"
-                className="group bg-amber-600 hover:bg-amber-700 text-white font-medium py-2.5 px-5 rounded transition-colors duration-200 flex items-center space-x-2 border border-amber-500/20"
+                className="group bg-yellow-400 hover:bg-yellow-500 text-black font-medium py-2.5 px-5 rounded transition-colors duration-200 flex items-center space-x-2 border border-yellow-500/20"
               >
                 <span>Learn More</span>
                 <ExternalLink className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
