@@ -103,6 +103,13 @@
   100% { transform: translateY(-50px); }
 }
 
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }
@@ -212,4 +219,8 @@ html {
 
 .oil-rig-silhouette {
   filter: drop-shadow(0 0 20px rgba(255, 107, 53, 0.5));
+}
+
+.animate-fadeOut {
+  animation: fadeOut 0.7s ease 1.3s forwards;
 }
