@@ -1,3 +1,4 @@
+"use client";
 import { Drill, Phone, MapPin, Mail, Linkedin, ArrowUp } from 'lucide-react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
@@ -13,10 +14,10 @@ const quickLinks = [
 ];
 
 const productLinks = [
-  { name: 'TJK Molded Products', href: '#' },
-  { name: 'Flow Valve', href: '#' },
-  { name: 'Kerr Pumps', href: '#' },
-  { name: "Open & Close Oilfield equipment's", href: '#' },
+  { name: 'TJK Molded Products', href: '/products/tjk-molded-products' },
+  { name: 'Flow Valve', href: '/products/flow-valve"' },
+  { name: 'Kerr Pumps', href: '/products/kerr-pumps' },
+  { name: "Open & Close Oilfield equipment's", href: '/products/open-close-equipment' },
 ];
 
 export function Footer() {

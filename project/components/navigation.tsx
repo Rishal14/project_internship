@@ -2,40 +2,56 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import Image from "next/image";
+import { useRouter, usePathname } from "next/navigation";
 
 const navItems = [
-  { name: "Home", href: "#home" },
-  { name: "About Us", href: "#about" },
-  { name: "Services", href: "#services" },
-  { name: "Our Products", href: "#products" },
-
-
-
-  
-  { name: "Contact Us", href: "#contact" },
-  { name: "Download", href: "#download" },
-  { name: "Company Profile", href: "#company" },
+  { name: "Home", href: "/#home" },
+  { name: "About Us", href: "/#about" },
+  { name: "Services", href: "/#services" },
+  {
+    name: "Our Products",
+    href: "#products",
+    children: [
+      { name: "TJK Molded Products", href: "/products/tjk-molded-products" },
+      { name: "Flow Valve", href: "/products/flow-valve" },
+      { name: "KERR Pumps", href: "/products/kerr-pumps" },
+      { name: "Open & Close Oilfield Equipment's", href: "/products/open-close-equipment" },
+      { name: "Affordable Automation Products", href: "/products/affordable-automation" },
+      { name: "SILVER FOX Flow Control Tools", href: "/products/silver-fox" },
+      { name: "Keystone Oilfield Fabrication", href: "/products/keystone-fabrication" },
+    ],
+  },
+  { name: "Contact Us", href: "/#contact" },
+  { name: "Download", href: "/#download" },
+  { name: "Company Profile", href: "/#company" },
 ];
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [scrolled, setScrolled] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
 
-      const current = navItems.find((item) => {
-        const el = document.getElementById(item.href.substring(1));
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom >= 100;
-        }
-        return false;
-      });
+      const current = navItems
+        .flatMap((item) => (item.children ? item.children : item))
+        .find((item) => {
+          // Skip product items as they navigate to different pages
+          if (item.href.startsWith('/products/')) return false;
+          
+          const el = document.getElementById(item.href.substring(1));
+          if (el) {
+            const rect = el.getBoundingClientRect();
+            return rect.top <= 100 && rect.bottom >= 100;
+          }
+          return false;
+        });
 
       if (current) setActiveSection(current.href.substring(1));
     };
@@ -44,12 +60,29 @@ export function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToSection = (e: React.MouseEvent, href: string) => {
+  const handleNavigation = (e: React.MouseEvent, href: string) => {
     e.preventDefault();
-    const element = document.querySelector(href);
+    
+    // If it's a product link, navigate to the page
+    if (href.startsWith('/products/')) {
+      router.push(href);
+      setIsOpen(false);
+      return;
+    }
+
+    // If it's a homepage section link and we're NOT on the homepage, navigate there
+    if (href.startsWith('/#') && pathname !== '/') {
+      router.push(href);
+      setIsOpen(false);
+      return;
+    }
+    
+    // Otherwise, scroll to section (existing behavior)
+    const selector = href.startsWith('/') ? href.slice(1) : href;
+    const element = document.querySelector(selector);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
-      setActiveSection(href.substring(1));
+      setActiveSection(href.replace(/^.*#/, ''));
       setIsOpen(false);
     }
   };
@@ -64,11 +97,10 @@ export function Navigation() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        {/* Logo with spacing and scale */}
         <motion.div
           animate={{
             scale: scrolled ? 0.6 : 1,
-            marginTop: scrolled ? "0.5rem" : "3rem", // 0.5rem = mt-2, 3rem = mt-12
+            marginTop: scrolled ? "0.5rem" : "3rem",
           }}
           transition={{ duration: 0.3 }}
           className="origin-top-left"
@@ -85,26 +117,44 @@ export function Navigation() {
 
         {/* Desktop nav */}
         <div className="hidden lg:flex space-x-6 text-sm font-medium tracking-wide">
-          {navItems.map((item) => {
-            const isActive = activeSection === item.href.substring(1);
-            return (
+          {navItems.map((item) =>
+            item.children ? (
+              <div key={item.name} className="relative group">
+                <button
+                  className={`py-2 flex items-center gap-1 text-white hover:text-yellow-400 ${
+                    activeSection === item.href.substring(1) && "text-yellow-400"
+                  }`}
+                >
+                  {item.name} <ChevronDown className="w-4 h-4" />
+                </button>
+                <div className="absolute hidden group-hover:block bg-black/90 backdrop-blur-sm mt-2 py-2 rounded shadow-lg z-50">
+                  {item.children.map((subItem) => (
+                    <a
+                      key={subItem.name}
+                      href={subItem.href}
+                      onClick={(e) => handleNavigation(e, subItem.href)}
+                      className="block px-4 py-2 whitespace-nowrap text-white hover:text-yellow-400"
+                    >
+                      {subItem.name}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ) : (
               <a
                 key={item.name}
                 href={item.href}
-                onClick={(e) => scrollToSection(e, item.href)}
+                onClick={(e) => handleNavigation(e, item.href)}
                 className={`relative py-2 transition-all duration-300 ${
-                  isActive
+                  activeSection === item.href.substring(1)
                     ? "text-yellow-400"
                     : "text-white hover:text-yellow-400"
                 }`}
               >
                 {item.name}
-                {isActive && (
-                  <span className="absolute left-0 bottom-0 w-full h-0.5 bg-yellow-400 rounded-md" />
-                )}
               </a>
-            );
-          })}
+            )
+          )}
         </div>
 
         {/* Mobile Menu Button */}
@@ -118,21 +168,36 @@ export function Navigation() {
       {/* Mobile nav */}
       {isOpen && (
         <div className="lg:hidden bg-black/90 backdrop-blur-sm px-6 py-4 space-y-2 text-white">
-          {navItems.map((item) => {
-            const isActive = activeSection === item.href.substring(1);
-            return (
+          {navItems.map((item) =>
+            item.children ? (
+              <div key={item.name}>
+                <span className="block font-semibold text-yellow-400 mt-2">{item.name}</span>
+                {item.children.map((subItem) => (
+                  <a
+                    key={subItem.name}
+                    href={subItem.href}
+                    onClick={(e) => handleNavigation(e, subItem.href)}
+                    className="block ml-4 py-1 hover:text-yellow-400"
+                  >
+                    {subItem.name}
+                  </a>
+                ))}
+              </div>
+            ) : (
               <a
                 key={item.name}
                 href={item.href}
-                onClick={(e) => scrollToSection(e, item.href)}
+                onClick={(e) => handleNavigation(e, item.href)}
                 className={`block py-2 ${
-                  isActive ? "text-yellow-400" : "hover:text-yellow-400"
+                  activeSection === item.href.substring(1)
+                    ? "text-yellow-400"
+                    : "hover:text-yellow-400"
                 }`}
               >
                 {item.name}
               </a>
-            );
-          })}
+            )
+          )}
         </div>
       )}
     </motion.nav>
