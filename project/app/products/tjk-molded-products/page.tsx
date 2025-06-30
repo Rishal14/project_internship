@@ -482,37 +482,82 @@ const sectionContents: Record<string, React.ReactNode> = {
     </div>
   ),
   "swivel-repair-kits": (
-    <motion.div
-      key="swivel-repair-kits"
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -40 }}
-      transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-    >
-      <motion.h2 
-        className="text-3xl font-bold text-gray-900 mb-6"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2, duration: 0.6 }}
-        whileHover={{ scale: 1.02 }}
-      >
-        Swivel Repair Kits
-      </motion.h2>
-      <motion.div
-        className="bg-gradient-to-r from-blue-50 to-cyan-50 p-6 rounded-xl border border-blue-200"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3, duration: 0.6 }}
-        whileHover={{ 
-          scale: 1.02,
-          boxShadow: "0 10px 30px rgba(59, 130, 246, 0.15)"
-        }}
-      >
-        <p className="text-lg text-gray-700 mb-4">
-          Detailed information about Swivel Repair Kits will be available soon. Our team is working on comprehensive documentation for all our product categories.
-        </p>
-      </motion.div>
-    </motion.div>
+    <div className="space-y-6">
+      <h2 className="text-3xl font-bold text-gray-900 mt-2 mb-2">Swivel Repair Kits</h2>
+      <p className="text-base text-gray-800 max-w-3xl">
+        TJK Molded Products offers comprehensive Swivel Repair Kits to ensure seamless maintenance and repair of swivel assemblies. Each kit includes high-quality components designed for durability and precision, allowing users to restore their equipment to optimal performance.
+      </p>
+
+      <h3 className="text-2xl font-bold text-gray-800 pt-4">Our Product Range</h3>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+        <div className="border rounded-lg p-4 bg-white">
+          <span className="font-bold">SJ151RK: 1″ Swivel Repair Kit</span>
+          <ul className="list-disc list-inside mt-2 text-gray-600">
+            <li>Packing</li>
+            <li>Dust Seal</li>
+            <li>O-Ring</li>
+            <li>Retaining Clip</li>
+            <li>Ball Plugs</li>
+            <li>Lub Plug</li>
+            <li>1/4″ Ball</li>
+          </ul>
+        </div>
+        <div className="border rounded-lg p-4 bg-white">
+          <span className="font-bold">SJ1515RK: 1 1/2″ Swivel Repair Kit</span>
+          <ul className="list-disc list-inside mt-2 text-gray-600">
+            <li>Packing</li>
+            <li>Dust Seal</li>
+            <li>O-Ring</li>
+            <li>Retaining Clip</li>
+            <li>Ball Plugs</li>
+            <li>Lub Plug</li>
+            <li>1/4″ Ball</li>
+          </ul>
+        </div>
+        <div className="border rounded-lg p-4 bg-white">
+          <span className="font-bold">SJ153RK: 3″ Swivel Repair Kit</span>
+          <ul className="list-disc list-inside mt-2 text-gray-600">
+            <li>Packing</li>
+            <li>Dust Seal</li>
+            <li>O-Ring</li>
+            <li>Retaining Clip</li>
+            <li>Ball Plugs</li>
+            <li>Lub Plug</li>
+            <li>3/8″ Ball</li>
+          </ul>
+        </div>
+        <div className="border rounded-lg p-4 bg-white">
+          <span className="font-bold">SJ124RK: 4″ 1002 Swivel Repair Kit</span>
+          <ul className="list-disc list-inside mt-2 text-gray-600">
+            <li>Packing</li>
+            <li>Dust Seal</li>
+            <li>O-Ring</li>
+            <li>Retaining Clip</li>
+            <li>Ball Plugs</li>
+            <li>Lub Plug</li>
+            <li>1/2″ Ball</li>
+          </ul>
+        </div>
+        <div className="border rounded-lg p-4 bg-white">
+          <span className="font-bold">SJ154RK: 4″ 1502 Swivel Repair Kit</span>
+          <ul className="list-disc list-inside mt-2 text-gray-600">
+            <li>Packing</li>
+            <li>Dust Seal</li>
+            <li>O-Ring</li>
+            <li>Retaining Clip</li>
+            <li>Ball Plugs</li>
+            <li>Lub Plug</li>
+            <li>5/8″ Ball</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 className="text-2xl font-bold text-gray-800 pt-4">Why Choose TJK Swivel Repair Kits?</h3>
+      <p className="text-base text-gray-800 max-w-3xl">
+        Each kit is meticulously crafted to meet industry standards and includes everything required for efficient swivel maintenance. Whether you're repairing a 1″ swivel or a 4″ 1502 swivel assembly, our kits are designed to deliver unmatched quality and ease of use.
+      </p>
+    </div>
   ),
   "plug-valve-kit": (
     <motion.div
