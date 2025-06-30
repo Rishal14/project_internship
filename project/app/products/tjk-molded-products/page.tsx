@@ -21,29 +21,41 @@ const sections = [
 
 // Enhanced floating particles component
 const FloatingParticles = () => {
+  const [positions, setPositions] = useState<{x: number, y: number}[]>([]);
+
+  useEffect(() => {
+    // Only runs on client
+    setPositions(
+      Array.from({ length: 50 }).map(() => ({
+        x: Math.random() * window.innerWidth,
+        y: window.innerHeight + 50,
+      }))
+    );
+  }, []);
+
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {Array.from({ length: 50 }).map((_, i) => (
+      {positions.map((pos, i) => (
         <motion.div
           key={i}
           className="absolute w-1 h-1 bg-yellow-400 rounded-full"
-          initial={{ 
-            x: Math.random() * window.innerWidth, 
-            y: window.innerHeight + 50,
+          initial={{
+            x: pos.x,
+            y: pos.y,
             opacity: 0,
-            scale: 0
+            scale: 0,
           }}
-          animate={{ 
+          animate={{
             y: -50,
             opacity: [0, 1, 0],
             scale: [0, Math.random() * 1.5 + 0.5, 0],
-            x: Math.random() * window.innerWidth
+            x: pos.x,
           }}
           transition={{
             duration: Math.random() * 8 + 10,
             repeat: Infinity,
             delay: Math.random() * 5,
-            ease: "linear"
+            ease: "linear",
           }}
         />
       ))}
