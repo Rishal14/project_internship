@@ -555,7 +555,7 @@ const sectionContents: Record<string, React.ReactNode> = {
 
       <h3 className="text-2xl font-bold text-gray-800 pt-4">Why Choose TJK Swivel Repair Kits?</h3>
       <p className="text-base text-gray-800 max-w-3xl">
-        Each kit is meticulously crafted to meet industry standards and includes everything required for efficient swivel maintenance. Whether you're repairing a 1″ swivel or a 4″ 1502 swivel assembly, our kits are designed to deliver unmatched quality and ease of use.
+        Each kit is meticulously crafted to meet industry standards and includes everything required for efficient swivel maintenance. Whether you repairing a 1″ swivel or a 4″ 1502 swivel assembly, our kits are designed to deliver unmatched quality and ease of use.
       </p>
     </div>
   ),
