@@ -254,7 +254,7 @@ const sectionContents: Record<string, React.ReactNode> = {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.5, duration: 0.6 }}
           >
-            Since TJK founding in 2009 by the Klingbail Brothers, we've committed to delivering high-quality products from our state-of-the-art, 15,000 sq. ft. air-conditioned facility located in Ardmore, Oklahoma.
+            Since TJK founding in 2009 by the Klingbail Brothers, we&apos;ve committed to delivering high-quality products from our state-of-the-art, 15,000 sq. ft. air-conditioned facility located in Ardmore, Oklahoma.
           </motion.p>
         </motion.div>
         
@@ -287,7 +287,7 @@ const sectionContents: Record<string, React.ReactNode> = {
       </motion.div>
       
       {/* Specifications section */}
-      <motion.div
+      {/* <motion.div
         className="mt-16 bg-gradient-to-br from-gray-50 to-gray-100 p-8 rounded-2xl"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -342,13 +342,148 @@ const sectionContents: Record<string, React.ReactNode> = {
             </motion.div>
           ))}
         </motion.div>
-      </motion.div>
+      </motion.div> */}
     </motion.div>
   ),
-  // Add other sections with enhanced animations
   "union-seal-rings": (
+    <div className="space-y-6">
+      <h2 className="text-3xl font-bold text-gray-900 mt-2 mb-2">Union Seal Rings</h2>
+      <p className="text-base text-gray-800 max-w-3xl">
+        At TJK Molded Products, we offer a wide range of high-quality Union Seal Rings designed to meet diverse industrial requirements. Our seal rings are made from durable Buna-N rubber with precise specifications to ensure superior performance in flow-line applications.
+      </p>
+      <p className="text-base text-gray-800 max-w-3xl">
+        Our Union Seal Rings are designed for durability, reliability, and optimal sealing performance. Whether you&apos;re in need of standard Buna-N components or enhanced options with bronze back-up, we have the solutions to suit your needs.
+      </p>
+      <motion.div
+        className="flex flex-col md:flex-row gap-8 items-center justify-start mt-6"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, ease: 'easeOut' }}
+      >
+        <motion.div
+          className="flex flex-col items-center flex-1 cursor-pointer rounded-2xl border-2 border-yellow-300 p-6 bg-white shadow-md"
+          whileHover={{ boxShadow: '0 0 32px 4px #fde047' }}
+          transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+        >
+          <img src="/products/13-2.webp" alt="Duro with anti extrusion ring" className="w-44 h-44 object-contain rounded-xl bg-white" />
+          <span className="font-semibold mt-2">Duro with anti extrusion ring</span>
+        </motion.div>
+        <motion.div
+          className="flex flex-col items-center flex-1 cursor-pointer rounded-2xl border-2 border-yellow-300 p-6 bg-white shadow-md"
+          whileHover={{ boxShadow: '0 0 32px 4px #fde047' }}
+          transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+        >
+          <img src="/products/15-5.webp" alt="Union seal ring" className="w-44 h-44 object-contain rounded-xl bg-white" />
+          <span className="font-semibold mt-2">Union seal ring</span>
+        </motion.div>
+      </motion.div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+        <div className="border rounded-lg p-4 bg-white">
+          <span className="font-bold">Part # SR621</span><br />
+          <span>Desc: 1&quot; Union Seal Ring Buna -N 80 Duro</span>
+        </div>
+        <div className="border rounded-lg p-4 bg-white">
+          <span className="font-bold">Part # SR6215</span><br />
+          <span>Desc: 1-1/2&quot; Union Seal Ring Buna -N 80 Duro</span>
+        </div>
+        <div className="border rounded-lg p-4 bg-white">
+          <span className="font-bold">Part # SR622</span><br />
+          <span>Desc: 2&quot; Union Seal Ring Buna -N 80 Duro</span>
+        </div>
+        <div className="border rounded-lg p-4 bg-white">
+          <span className="font-bold">Part # SR623</span><br />
+          <span>Desc: 3&quot; Union Seal Ring Buna -N 80 Duro</span>
+        </div>
+        <div className="border rounded-lg p-4 bg-white">
+          <span className="font-bold">Part # SR624</span><br />
+          <span>Desc: 4&quot; Union Seal Ring Buna -N 80 Duro</span>
+        </div>
+        <div className="border rounded-lg p-4 bg-white">
+          <span className="font-bold">Part # SR152</span><br />
+          <span>Desc: 2&quot; Union Seal Ring Buna -N 80 Duro With Bronze back -up</span>
+        </div>
+        <div className="border rounded-lg p-4 bg-white">
+          <span className="font-bold">Part # SR153</span><br />
+          <span>Desc: 3&quot; Union Seal Ring Buna -N 80 Duro With Bronze back -up</span>
+        </div>
+        <div className="border rounded-lg p-4 bg-white">
+          <span className="font-bold">Part # SR154</span><br />
+          <span>Desc: 4&quot; Union Seal Ring Buna -N 80 Duro With Bronze back -up</span>
+        </div>
+        <div className="border rounded-lg p-4 bg-white">
+          <span className="font-bold">Part # OR428</span><br />
+          <span>Desc: 5&quot; Fig 1002 seal ring -N 90 Duro With Bronze back -up</span>
+        </div>
+        <div className="border rounded-lg p-4 bg-white">
+          <span className="font-bold">Part # SR156</span><br />
+          <span>Desc: 6&quot; Union Seal Ring -Buna -N 80 Duro With Bronze back -up</span>
+        </div>
+      </div>
+    </div>
+  ),
+  "swivel-packing": (
+    <div className="space-y-6">
+      <h2 className="text-3xl font-bold text-gray-900 mt-2 mb-2">Swivel Packing</h2>
+      <p className="text-base text-gray-800 max-w-3xl">
+        Our Swivel Packing Kits are engineered for reliability and long service life in demanding oilfield applications. Each kit includes all necessary components for a complete packing replacement, ensuring a secure seal and smooth operation.
+      </p>
+      <div className="flex flex-col md:flex-row gap-8 items-center justify-start mt-6">
+        <motion.div
+          className="flex flex-col items-center flex-1 cursor-pointer rounded-2xl border-2 border-yellow-300 p-6 bg-white shadow-md"
+          whileHover={{ boxShadow: '0 0 32px 4px #fde047' }}
+          transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+        >
+          <img src="/products/11-2.webp" alt="Swivel Packing Kit in Box" className="w-44 h-44 object-contain rounded-xl bg-white" />
+          <span className="font-semibold mt-2">Swivel Packing Kit in Box</span>
+        </motion.div>
+        <motion.div
+          className="flex flex-col items-center flex-1 cursor-pointer rounded-2xl border-2 border-yellow-300 p-6 bg-white shadow-md"
+          whileHover={{ boxShadow: '0 0 32px 4px #fde047' }}
+          transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+        >
+          <img src="/products/pack.webp" alt="Swivel Packing Kit Label" className="w-44 h-44 object-contain rounded-xl bg-white" />
+          <span className="font-semibold mt-2">Swivel Packing Kit Label</span>
+        </motion.div>
+        <motion.div
+          className="flex flex-col items-center flex-1 cursor-pointer rounded-2xl border-2 border-yellow-300 p-6 bg-white shadow-md"
+          whileHover={{ boxShadow: '0 0 32px 4px #fde047' }}
+          transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+        >
+          <img src="/products/17-4.webp" alt="Swivel Packing Kit Components" className="w-44 h-44 object-contain rounded-xl bg-white" />
+          <span className="font-semibold mt-2">Swivel Packing Kit Components</span>
+        </motion.div>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+        <div className="border rounded-lg p-4 bg-white">
+          <span className="font-bold">Part # SPK01</span><br />
+          <span>Desc: Swivel Packing Kit for 2&quot; Swivel</span>
+        </div>
+        <div className="border rounded-lg p-4 bg-white">
+          <span className="font-bold">Part # SPK02</span><br />
+          <span>Desc: Swivel Packing Kit for 3&quot; Swivel</span>
+        </div>
+        <div className="border rounded-lg p-4 bg-white">
+          <span className="font-bold">Part # SPK03</span><br />
+          <span>Desc: Swivel Packing Kit for 4&quot; Swivel</span>
+        </div>
+        <div className="border rounded-lg p-4 bg-white">
+          <span className="font-bold">Part # SPK04</span><br />
+          <span>Desc: Swivel Packing Kit for 2&quot; Swivel with Viton Seals</span>
+        </div>
+        <div className="border rounded-lg p-4 bg-white">
+          <span className="font-bold">Part # SPK05</span><br />
+          <span>Desc: Swivel Packing Kit for 3&quot; Swivel with Viton Seals</span>
+        </div>
+        <div className="border rounded-lg p-4 bg-white">
+          <span className="font-bold">Part # SPK06</span><br />
+          <span>Desc: Swivel Packing Kit for 4&quot; Swivel with Viton Seals</span>
+        </div>
+      </div>
+    </div>
+  ),
+  "swivel-repair-kits": (
     <motion.div
-      key="union-seal-rings"
+      key="swivel-repair-kits"
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -40 }}
@@ -361,7 +496,7 @@ const sectionContents: Record<string, React.ReactNode> = {
         transition={{ delay: 0.2, duration: 0.6 }}
         whileHover={{ scale: 1.02 }}
       >
-        Union Seal Rings
+        Swivel Repair Kits
       </motion.h2>
       <motion.div
         className="bg-gradient-to-r from-blue-50 to-cyan-50 p-6 rounded-xl border border-blue-200"
@@ -374,41 +509,242 @@ const sectionContents: Record<string, React.ReactNode> = {
         }}
       >
         <p className="text-lg text-gray-700 mb-4">
-          High-performance union seal rings designed for critical sealing applications in demanding industrial environments.
+          Detailed information about Swivel Repair Kits will be available soon. Our team is working on comprehensive documentation for all our product categories.
         </p>
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6"
-          variants={{
-            hidden: { opacity: 0 },
-            show: {
-              opacity: 1,
-              transition: {
-                staggerChildren: 0.1
-              }
-            }
-          }}
-          initial="hidden"
-          animate="show"
-        >
-          {["Temperature Resistant", "Chemical Compatible", "Long Lasting"].map((feature, index) => (
-            <motion.div
-              key={index}
-              className="bg-white p-4 rounded-lg shadow-sm"
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                show: { opacity: 1, y: 0 }
-              }}
-              whileHover={{ scale: 1.05 }}
-            >
-              <CheckCircle className="w-5 h-5 text-green-500 mb-2" />
-              <span className="text-sm font-medium text-gray-800">{feature}</span>
-            </motion.div>
-          ))}
-        </motion.div>
       </motion.div>
     </motion.div>
   ),
-  // Add similar enhanced animations for other sections...
+  "plug-valve-kit": (
+    <motion.div
+      key="plug-valve-kit"
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -40 }}
+      transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+    >
+      <motion.h2 
+        className="text-3xl font-bold text-gray-900 mb-6"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2, duration: 0.6 }}
+        whileHover={{ scale: 1.02 }}
+      >
+        Plug Valve Kit
+      </motion.h2>
+      <motion.div
+        className="bg-gradient-to-r from-blue-50 to-cyan-50 p-6 rounded-xl border border-blue-200"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3, duration: 0.6 }}
+        whileHover={{ 
+          scale: 1.02,
+          boxShadow: "0 10px 30px rgba(59, 130, 246, 0.15)"
+        }}
+      >
+        <p className="text-lg text-gray-700 mb-4">
+          Detailed information about Plug Valve Kit will be available soon. Our team is working on comprehensive documentation for all our product categories.
+        </p>
+      </motion.div>
+    </motion.div>
+  ),
+  "swivel-dust-seals": (
+    <motion.div
+      key="swivel-dust-seals"
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -40 }}
+      transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+    >
+      <motion.h2 
+        className="text-3xl font-bold text-gray-900 mb-6"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2, duration: 0.6 }}
+        whileHover={{ scale: 1.02 }}
+      >
+        Swivel Dust Seals
+      </motion.h2>
+      <motion.div
+        className="bg-gradient-to-r from-blue-50 to-cyan-50 p-6 rounded-xl border border-blue-200"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3, duration: 0.6 }}
+        whileHover={{ 
+          scale: 1.02,
+          boxShadow: "0 10px 30px rgba(59, 130, 246, 0.15)"
+        }}
+      >
+        <p className="text-lg text-gray-700 mb-4">
+          Detailed information about Swivel Dust Seals will be available soon. Our team is working on comprehensive documentation for all our product categories.
+        </p>
+      </motion.div>
+    </motion.div>
+  ),
+  "swivel-o-rings": (
+    <motion.div
+      key="swivel-o-rings"
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -40 }}
+      transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+    >
+      <motion.h2 
+        className="text-3xl font-bold text-gray-900 mb-6"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2, duration: 0.6 }}
+        whileHover={{ scale: 1.02 }}
+      >
+        Swivel O-Rings
+      </motion.h2>
+      <motion.div
+        className="bg-gradient-to-r from-blue-50 to-cyan-50 p-6 rounded-xl border border-blue-200"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3, duration: 0.6 }}
+        whileHover={{ 
+          scale: 1.02,
+          boxShadow: "0 10px 30px rgba(59, 130, 246, 0.15)"
+        }}
+      >
+        <p className="text-lg text-gray-700 mb-4">
+          Detailed information about Swivel O-Rings will be available soon. Our team is working on comprehensive documentation for all our product categories.
+        </p>
+      </motion.div>
+    </motion.div>
+  ),
+  "swivel-ball-retaining-plugs": (
+    <motion.div
+      key="swivel-ball-retaining-plugs"
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -40 }}
+      transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+    >
+      <motion.h2 
+        className="text-3xl font-bold text-gray-900 mb-6"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2, duration: 0.6 }}
+        whileHover={{ scale: 1.02 }}
+      >
+        Swivel Ball Retaining Plugs
+      </motion.h2>
+      <motion.div
+        className="bg-gradient-to-r from-blue-50 to-cyan-50 p-6 rounded-xl border border-blue-200"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3, duration: 0.6 }}
+        whileHover={{ 
+          scale: 1.02,
+          boxShadow: "0 10px 30px rgba(59, 130, 246, 0.15)"
+        }}
+      >
+        <p className="text-lg text-gray-700 mb-4">
+          Detailed information about Swivel Ball Retaining Plugs will be available soon. Our team is working on comprehensive documentation for all our product categories.
+        </p>
+      </motion.div>
+    </motion.div>
+  ),
+  "swivel-ball-plug-retaining-clips": (
+    <motion.div
+      key="swivel-ball-plug-retaining-clips"
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -40 }}
+      transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+    >
+      <motion.h2 
+        className="text-3xl font-bold text-gray-900 mb-6"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2, duration: 0.6 }}
+        whileHover={{ scale: 1.02 }}
+      >
+        Swivel Ball Plug/Retaining Clips & Detachable Nut Retaining Rings
+      </motion.h2>
+      <motion.div
+        className="bg-gradient-to-r from-blue-50 to-cyan-50 p-6 rounded-xl border border-blue-200"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3, duration: 0.6 }}
+        whileHover={{ 
+          scale: 1.02,
+          boxShadow: "0 10px 30px rgba(59, 130, 246, 0.15)"
+        }}
+      >
+        <p className="text-lg text-gray-700 mb-4">
+          Detailed information about Swivel Ball Plug/Retaining Clips & Detachable Nut Retaining Rings will be available soon. Our team is working on comprehensive documentation for all our product categories.
+        </p>
+      </motion.div>
+    </motion.div>
+  ),
+  "chrome-steel-balls": (
+    <motion.div
+      key="chrome-steel-balls"
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -40 }}
+      transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+    >
+      <motion.h2 
+        className="text-3xl font-bold text-gray-900 mb-6"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2, duration: 0.6 }}
+        whileHover={{ scale: 1.02 }}
+      >
+        Chrome Steel Balls
+      </motion.h2>
+      <motion.div
+        className="bg-gradient-to-r from-blue-50 to-cyan-50 p-6 rounded-xl border border-blue-200"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3, duration: 0.6 }}
+        whileHover={{ 
+          scale: 1.02,
+          boxShadow: "0 10px 30px rgba(59, 130, 246, 0.15)"
+        }}
+      >
+        <p className="text-lg text-gray-700 mb-4">
+          Detailed information about Chrome Steel Balls will be available soon. Our team is working on comprehensive documentation for all our product categories.
+        </p>
+      </motion.div>
+    </motion.div>
+  ),
+  "o-rings": (
+    <motion.div
+      key="o-rings"
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -40 }}
+      transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+    >
+      <motion.h2 
+        className="text-3xl font-bold text-gray-900 mb-6"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2, duration: 0.6 }}
+        whileHover={{ scale: 1.02 }}
+      >
+        O Rings
+      </motion.h2>
+      <motion.div
+        className="bg-gradient-to-r from-blue-50 to-cyan-50 p-6 rounded-xl border border-blue-200"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3, duration: 0.6 }}
+        whileHover={{ 
+          scale: 1.02,
+          boxShadow: "0 10px 30px rgba(59, 130, 246, 0.15)"
+        }}
+      >
+        <p className="text-lg text-gray-700 mb-4">
+          Detailed information about O Rings will be available soon. Our team is working on comprehensive documentation for all our product categories.
+        </p>
+      </motion.div>
+    </motion.div>
+  ),
 };
 
 // Add remaining sections with similar animation patterns
@@ -481,13 +817,8 @@ export default function TJKMoldedProducts() {
         <motion.div 
           className="absolute inset-0"
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.5 }}
-          style={{
-            background: "linear-gradient(45deg, rgba(0,0,0,0.7), rgba(59,130,246,0.3), rgba(0,0,0,0.7))",
-            backgroundSize: "400% 400%"
-          }}
           animate={{
+            opacity: 1,
             backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
           }}
           transition={{
@@ -495,89 +826,58 @@ export default function TJKMoldedProducts() {
             repeat: Infinity,
             ease: "linear"
           }}
+          style={{
+            background: "linear-gradient(45deg, rgba(0,0,0,0.7), rgba(59,130,246,0.3), rgba(0,0,0,0.7))",
+            backgroundSize: "400% 400%"
+          }}
         />
         
         <div className="relative z-10 w-full">
           <div className="max-w-7xl mx-auto px-4 py-20">
-            <motion.div 
-              className="text-center"
-              initial={{ opacity: 0, y: 100 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
-            >
-              <motion.div
-                className="mb-6"
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: 0.7, type: "spring", stiffness: 200, damping: 15 }}
-              >
-                <Sparkles className="w-16 h-16 text-yellow-400 mx-auto mb-4" />
-              </motion.div>
-              
-              <motion.h1 
-                className="text-5xl md:text-7xl font-bold mb-8"
-                initial={{ opacity: 0, y: 30 }}
+            <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+              {/* Left: Heading */}
+              <motion.div 
+                className="text-center md:text-left flex-1"
+                initial={{ opacity: 0, y: 100 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.9, duration: 1 }}
+                transition={{ delay: 0.5, duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
               >
-                <motion.span
-                  className="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 bg-clip-text text-transparent"
-                  animate={{
-                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "linear"
-                  }}
-                  style={{
-                    backgroundSize: "200% 200%"
-                  }}
+                <motion.h1 
+                  className="text-3xl md:text-5xl font-bold mb-0"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.9, duration: 1 }}
                 >
-                  TJK Molded Products
-                </motion.span>
-              </motion.h1>
-              
-              <motion.p 
-                className="text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.1, duration: 1 }}
-              >
-                Premium rubber components for the oil and gas industry. 
-                Over 40 years of experience delivering precision-molded solutions.
-              </motion.p>
-              
-              <motion.div
-                className="mt-8"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.3, duration: 0.8 }}
-              >
-                <motion.button
-                  className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-bold py-4 px-8 rounded-full text-lg shadow-2xl"
-                  whileHover={{ 
-                    scale: 1.05,
-                    boxShadow: "0 20px 40px rgba(251, 191, 36, 0.4)"
-                  }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                >
-                  Explore Our Products
-                </motion.button>
+                  <motion.span
+                    className="inline-block bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 bg-clip-text text-transparent"
+                    animate={{
+                      backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "linear"
+                    }}
+                    style={{
+                      backgroundSize: "200% 200%"
+                    }}
+                  >
+                    TJK Molded Products
+                  </motion.span>
+                </motion.h1>
               </motion.div>
-            </motion.div>
+              {/* Right: Image */}
+              <div className="hidden md:flex flex-1 items-center justify-end">
+                <img
+                  src="/services/TJK.png"
+                  alt="TJK Molded Products"
+                  className="w-[180px] h-auto object-contain drop-shadow-2xl rounded-lg"
+                  style={{ maxHeight: '180px' }}
+                />
+              </div>
+            </div>
           </div>
         </div>
-        
-        {/* Animated scroll indicator */}
-        <motion.div
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <ArrowDown className="w-8 h-8 text-white opacity-70" />
-        </motion.div>
       </motion.div>
 
       {/* Main Content with enhanced animations */}

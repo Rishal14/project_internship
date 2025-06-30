@@ -46,7 +46,7 @@ export default function Home() {
           <AboutSection />
           <ServicesSection />
           <ProductsSection />
-          <Footer />
+        
         </div>
       )}
     </main>
